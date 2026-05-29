@@ -6,13 +6,35 @@ _Elaborado por Paulo Cesar Nicolau Padilha, do quinto período de Bacharelado em
 
 ## Sumário
 
-- [Criação de um Jogo 2D com o GameMaker](#criação-de-um-jogo-2d-com-o-gamemaker)
-  - [Sumário](#sumário)
-  - [Instalação do GameMaker](#instalação-do-gamemaker)
-    - [Ubuntu](#ubuntu)
-    - [Windows](#windows)
-  - [Criação do Projeto](#criação-do-projeto)
-  - [Conhecendo o espaço de trabalho do GameMaker](#conhecendo-o-espaço-de-trabalho-do-gamemaker)
+- [Introdução ao GameMaker](#introdução-ao-gamemaker)
+- [Instalação do GameMaker](#instalação-do-gamemaker)
+  - [Ubuntu](#ubuntu)
+  - [Windows](#windows)
+- [Criação do Projeto](#criação-do-projeto)
+- [Conhecendo o espaço de trabalho do GameMaker](#conhecendo-o-espaço-de-trabalho-do-gamemaker)
+
+---
+
+## Introdução ao GameMaker
+
+Antigamente conhecida como GameMaker Studio 2, a engine GameMaker é uma ferramenta de criação de jogos conhecida por sua simplicidade e facilidade de começar a utilizá-la, embora seja relativamente menos poderosa que outras engines como a Unity ou a Godot. Seu foco principal é em jogos 2D, possuindo um certo suporte à gráficos 3D limitados, e sua grande vantagem é a maneira com que ela é realmente perfeita para esse tipo de jogo. Muitos jogos 2D populares e aclamados, especialmente independentes, foram feitos à partir do GameMaker, alguns que posso destacar são:
+
+- Undertale/Deltarune.
+- Hotline Miami 1 e 2.
+- Forager.
+- Pizza Tower.
+- Katana ZERO.
+- Hyper Light Drifter.
+
+Além de ser altamente acessível e fácil de se aprender, a engine também oferece um [enorme manual](https://manual.gamemaker.io/monthly/br/#t=Content.htm) em sua página oficial contendo guias de todas as funções e funcionalidades diferentes em vários idiomas, incluindo português brasileiro, que pode muito bem servir de material tanto para desenvolvedores iniciantes quanto experientes.
+
+Eu mesmo tenho alguns jogos na minha página do [itch.io](https://paulok3tchup.itch.io/) que podem servir de exemplo para vocês das capacidades dessa engine até mesmo nas mãos de um amador como eu.
+
+> **Observação:** GameMaker é um software gratuito que permite que você crie e exporte os jogos gratuitamente para algumas plataformas sem problemas, _**ENTRETANTO**_ é necessário **comprar** uma licença para que o jogo possa ser comercializado e exportado para outras plataformas, como Nintendo Switch, Playstation e etc. Para mais informações sobre as licenças do GameMaker, acesse a [página de licenças](https://gamemaker.io/pt-BR/get).
+
+> **Observação 2:** Itch.io é uma plataforma de jogos na qual eu entrarei em detalhes mais pra frente.
+
+Mas agora, antes de começar o desenvolvimento, precisamos primeiramente instalar o dito cujo.
 
 ---
 
@@ -37,8 +59,6 @@ O comando vai a senha da sua conta de usuário, digite-a para prosseguir com a i
 No Windows, basta acessar a [página de download](https://gamemaker.io/pt-BR/download) do site oficial e selecionar a opção Windows (ou clicando nesse [link direto](https://gms.yoyogames.com/GameMaker-Installer-2026.0.0.16.exe) que eu coloquei aqui) que o arquivo de instalação será baixado. Depois de baixar, basta executar o arquivo para instalar o GameMaker.
 
 > **Observação:** A versão do GameMaker utilizada neste tutorial é a versão **LTS (Long Term Stable)**, que é a versão mais estável e recomendada para desenvolvimento de jogos, não recebe atualizações com frequência, caso queira que a Engine se mantenha atualizada, baixe a versão **padrão** do GameMaker.
-
-> **Observação 2:** GameMaker é um software gratuito que permite que você crie e exporte os jogos gratuitamente para algumas plataformas sem problemas, _**ENTRETANTO**_ é necessário **comprar** uma licença para que o jogo possa ser comercializado e exportado para outras plataformas, como Nintendo Switch, Playstation e etc. Para mais informações sobre as licenças do GameMaker, acesse a [página de licenças](https://gamemaker.io/pt-BR/get).
 
 ---
 
