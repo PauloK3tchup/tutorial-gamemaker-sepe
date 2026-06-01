@@ -19,12 +19,12 @@ _Elaborado por Paulo Cesar Nicolau Padilha, do quinto período de Bacharelado em
 
 Antigamente conhecido como GameMaker Studio 2, a engine GameMaker é uma ferramenta de criação de jogos famosa por sua simplicidade e facilidade de começar a utilizá-la, embora seja relativamente menos poderosa que outras engines como a Unity ou a Godot. Seu foco principal é em jogos 2D, possuindo um certo suporte à gráficos 3D limitados, e sua grande vantagem é a maneira com que ela é realmente perfeita para esse tipo de jogo. Muitos jogos 2D populares e aclamados, especialmente independentes, foram feitos à partir do GameMaker, alguns que posso destacar são:
 
-- Undertale/Deltarune.
-- Hotline Miami 1 e 2.
-- Forager.
-- Pizza Tower.
-- Katana ZERO.
-- Hyper Light Drifter.
+- [Undertale](https://undertale.com/)/[Deltarune](https://deltarune.com/).
+- [Hotline Miami 1 e 2](https://www.hotlinemiami.com/).
+- [Forager](https://store.steampowered.com/app/751780/Forager/).
+- [Pizza Tower](https://store.steampowered.com/app/2231450/Pizza_Tower/).
+- [Katana ZERO](https://katanazero.com/).
+- [Hyper Light Drifter](https://store.steampowered.com/app/257850/Hyper_Light_Drifter/).
 
 Além de ser altamente acessível e fácil de se aprender, a engine também oferece um [enorme manual](https://manual.gamemaker.io/monthly/br/#t=Content.htm) em sua página oficial contendo guias de todas as funções e funcionalidades diferentes em vários idiomas, incluindo português brasileiro, que pode muito bem servir de material tanto para desenvolvedores iniciantes quanto experientes.
 
