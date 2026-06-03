@@ -254,7 +254,7 @@ Como podem ver, o resultado da subtração entre o lado positivo e o negativo tr
 
 > **Explicação do código**:
 > > - **var**: é usado para declarar uma variável local, só usada dentro do escopo que foi declarada. Nesse caso, criamos a variável **"hsp"**.
-> > - <strong>(global.btn_dir - global.btn_esq)*spd<strong/>: o resultado da subtração é multiplicado pela velocidade.
+> > - <strong>(global.btn_dir - global.btn_esq)*spd</strong>: o resultado da subtração é multiplicado pela velocidade.
 > > - **x += hsp**: somamos o hsp à coordenada **x** do player.
 
 Poderíamos apertar F5 e ver o jogo em ação agora mesmo, mas ainda não iríamos ver nada, pois ainda falta uma coisa pro nosso obj_player.
