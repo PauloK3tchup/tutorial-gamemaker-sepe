@@ -12,6 +12,8 @@ _Elaborado por Paulo Cesar Nicolau Padilha, do quinto período de Bacharelado em
   - [Windows](#windows)
 - [Criação do Projeto](#criação-do-projeto)
 - [Conhecendo o espaço de trabalho do GameMaker](#conhecendo-o-espaço-de-trabalho-do-gamemaker)
+- [Criando um Objeto](#criando-um-objeto)
+  - [Eventos](#eventos)
 
 ---
 
@@ -99,3 +101,59 @@ Seja bem-vindo ao espaço de trabalho do GameMaker!
 Se estiver no **Windows**, pode deixar na opção "Testar" mesmo, que o jogo vai rodar normalmente.
 
 Agora podemos voltar ao espaço de trabalho.
+
+Nessa página inicial nós podemos reparar em quatro coisas principais:
+
+- O Inspetor na esquerda. Ele serve pra configurar o **asset** que esteja atualmente selecionado (ele começa na última sala aberta, nesse caso a única).
+- Os Recursos na direita. É aqui que ficam todos os **assets** do projeto.
+- As outras opções e configurações acima.
+- O Console abaixo (ele começa fechado).
+
+> Além desses quatro também existem várias outras telas como o **Editor de Sprite**, o **Editor de Objetos** e o **Editor de Ambientes**, mas esses nós ainda vamos conhecer ao longo da aula.
+
+Começaremos pelos recursos.
+
+## Criando um objeto
+
+Como devem ter notado, o GameMaker já cria uma sala inicial pro jogo funcionar. Manteremos essa sala existindo para usá-la futuramente. Agora, clicando com o botão direito no espaço vazio abaixo da sala, vamos criar um **grupo** chamado "Objects", e dentro desse grupo criaremos dois objetos, um chamado "obj_player" e outro chamado "obj_controle". Clicando duas vezes em um desses objetos vai abrir o **Editor de Objeto**, nessa tela nós podemos mudar o sprite, a máscara de colisão e o mais importante: os **Eventos**! Antes de partirmos para os eventos, entretanto, vamos escolher o _obj_controle_ para começar e vamos marcar a opção "persistente" no editor dele.
+
+### Eventos
+
+Os eventos controlam quando e como o jogo vai rodar os códigos que foram escritos. Nesse objeto que estamos editando agora, vamos usar dois eventos à princípio:
+
+- Evento **Criar**: Os códigos nesse evento rodam somente uma vez quando o objeto é criado no jogo.
+- Evento **Etapa Inicial**: Os códigos nesse evento rodam em todos os frames do jogo, mas **antes** do evento **Etapa***.
+
+> *O GameMaker possui três variações do evento etapa:
+> 
+> - Etapa Inicial: Roda antes do etapa.
+> - Etapa: Roda "no meio".
+> - Etapa Final: Roda após o etapa.
+>
+> Todos esses eventos ainda rodam a todos os frames do jogo, mas é importante aprender a ordem deles.
+
+Esse objeto servirá de controle para certas variáveis que devem existir a todo momento no jogo, e vamos começar pelas mais importantes:
+
+#### Inputs do player
+
+Pro jogo realmente funcionar como um jogo nós devemos ser capazes de controlar os menus e os personagens, então abriremos o evento **Criar** e vamos escrever o seguinte código:
+
+    //Create
+    
+    global.btn_cima = false
+    global.btn_baixo = false
+    global.btn_esq = false
+    global.btn_dir = false
+
+> Variáveis com prefixo "global." são acessíveis por todos os objetos e scripts do jogo.
+
+Esse vai ser o código básico de controle direcional. Mas ele não vai funcionar ainda, até por que ele está false em todos os botões, então vamos fazer esse código funcionar no evento **Etapa Inicial**:
+
+    //Begin Step
+    
+    global.btn_cima = keyboard_check(ord("W"))
+    global.btn_baixo = keyboard_check(ord("S"))
+    global.btn_esq = keyboard_check(ord("A"))
+    global.btn_dir = keyboard_check(ord("D"))
+
+Agora o jogo está lendo o input nas teclas W, A, S e D e associando eles à variáveis de botão pra cima, esquerda, baixo e direita respectivamente. E agora, já que estamos usando o **keyboard_check** na **Etapa Inicial**, o jogo vai saber se essas teclas estão sendo pressionadas antes de executar qualquer coisa que esteja no evento **Etapa** de qualquer outro objeto!
