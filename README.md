@@ -15,6 +15,8 @@ _Elaborado por Paulo Cesar Nicolau Padilha, do quinto período de Bacharelado em
 - [Criando os Objetos](#criando-os-objetos)
   - [Eventos](#eventos)
 - [Criando uma Sala](#criando-uma-sala)
+- [Controlando o Player](#controlando-o-player)
+- [Fazendo Sprites](#fazendo-sprites)
 
 ---
 
@@ -197,3 +199,64 @@ Pois é, o jogo não vai funcionar antes de nós configurarmos pelo menos uma **
 ## Criando uma Sala
 
 Vamos usar aquela mesma sala que o GameMaker já criou para nós, mas vamos fazer duas coisas antes: criar uma pasta chamada **"Rooms"** e renomar essa sala para **"rm_teste"**.
+
+(parte em falta por enquanto!!!!!)
+
+## Controlando o Player
+
+Agora nós vamos voltar ao evento Etapa do nosso obj_player e vamos pensar um pouco no seguinte:
+
+Esse código aqui é funcional:
+
+    //Step
+
+    if global.btn_cima {
+        y -= spd
+    }
+    if global.btn_baixo {
+        y += spd
+    }
+    if global.btn_esq {
+        x -= spd
+    }
+    if global.btn_dir {
+        x += spd
+    }
+
+Mas ele é muito redundante e pode ser chato de alterar no futuro, então vamos bolar uma abordagem diferente.
+
+Uma variável no estado **false** é igual a 0 no código, enquanto o **true** é igual a 1.
+
+Apesar de usarmos esses termos booleanos, o GameMaker (assim como todas as outras linguagens) lê essas variáveis como números mesmo, e assim pode-se fazer operações matemáticas com eles como qualquer outro número.
+Consequentemente, podemos chegar na seguinte conclusão:
+
+    //Subtraímos o lado "negativo" do lado "positivo" do movimento
+    global.btn_dir - global.btn_esq
+    
+    //Se nenhum botão for apertado:
+    global.btn_dir - global.btn_esq = 0
+    
+    //Se o botão esquerdo for apertado:
+    global.btn_dir - global.btn_esq = -1
+
+    //Se o botão direito for apertado:
+    global.btn_dir - global.btn_esq = 1
+
+Como podem ver, o resultado da subtração entre o lado positivo e o negativo traz um resultado que condiz com o lado do movimento no jogo (Negativo pra esquerda, Positivo pra direita) e então podemos fazer com que o código seja simplesmente assim:
+
+    //Step
+
+    var hsp = (global.btn_dir - global.btn_esq)*spd
+    var vsp = (global.btn_baixo - global.btn_cima)*spd
+
+    x += hsp
+    y += vsp
+
+> **Explicação do código**:
+> > - **var**: é usado para declarar uma variável local, só usada dentro do escopo que foi declarada. Nesse caso, criamos a variável **"hsp"**.
+> > - <strong>(global.btn_dir - global.btn_esq)*spd<strong/>: o resultado da subtração é multiplicado pela velocidade.
+> > - **x += hsp**: somamos o hsp à coordenada **x** do player.
+
+Poderíamos apertar F5 e ver o jogo em ação agora mesmo, mas ainda não iríamos ver nada, pois ainda falta uma coisa pro nosso obj_player.
+
+## Fazendo Sprites
