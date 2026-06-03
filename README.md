@@ -12,8 +12,9 @@ _Elaborado por Paulo Cesar Nicolau Padilha, do quinto período de Bacharelado em
   - [Windows](#windows)
 - [Criação do Projeto](#criação-do-projeto)
 - [Conhecendo o espaço de trabalho do GameMaker](#conhecendo-o-espaço-de-trabalho-do-gamemaker)
-- [Criando um Objeto](#criando-um-objeto)
+- [Criando os Objetos](#criando-os-objetos)
   - [Eventos](#eventos)
+- [Criando uma Sala](#criando-uma-sala)
 
 ---
 
@@ -113,7 +114,7 @@ Nessa página inicial nós podemos reparar em quatro coisas principais:
 
 Começaremos pelos recursos.
 
-## Criando um objeto
+## Criando os objetos
 
 Como devem ter notado, o GameMaker já cria uma sala inicial pro jogo funcionar. Manteremos essa sala existindo para usá-la futuramente. Agora, clicando com o botão direito no espaço vazio abaixo da sala, vamos criar um **grupo** chamado "Objects", e dentro desse grupo criaremos dois objetos, um chamado "obj_player" e outro chamado "obj_controle". Clicando duas vezes em um desses objetos vai abrir o **Editor de Objeto**, nessa tela nós podemos mudar o sprite, a máscara de colisão e o mais importante: os **Eventos**! Antes de partirmos para os eventos, entretanto, vamos escolher o _obj_controle_ para começar e vamos marcar a opção "persistente" no editor dele.
 
@@ -134,7 +135,7 @@ Os eventos controlam quando e como o jogo vai rodar os códigos que foram escrit
 
 Esse objeto servirá de controle para certas variáveis que devem existir a todo momento no jogo, e vamos começar pelas mais importantes:
 
-#### Inputs do player
+#### Os inputs do player
 
 Pro jogo realmente funcionar como um jogo nós devemos ser capazes de controlar os menus e os personagens, então abriremos o evento **Criar** e vamos escrever o seguinte código:
 
@@ -156,4 +157,43 @@ Esse vai ser o código básico de controle direcional. Mas ele não vai funciona
     global.btn_esq = keyboard_check(ord("A"))
     global.btn_dir = keyboard_check(ord("D"))
 
+> **"keyboard_check"** é uma função que lê o input da tecla que foi dada de parâmetro e retorna true enquanto ele estiver sendo segurado. Essa função tem algumas variações como o **"keyboard_check_pressed"** e o **"keyboard_check_released"** que retornam true em contextos diferentes e outras.
+> 
+> **"ord()"** é uma função que recebe um caractere e retorna seu valor Unicode (UTF8). Isso é necessário para que o GameMaker leia as letras do teclado.
+
 Agora o jogo está lendo o input nas teclas W, A, S e D e associando eles à variáveis de botão pra cima, esquerda, baixo e direita respectivamente. E agora, já que estamos usando o **keyboard_check** na **Etapa Inicial**, o jogo vai saber se essas teclas estão sendo pressionadas antes de executar qualquer coisa que esteja no evento **Etapa** de qualquer outro objeto!
+
+Mas não adiante ter os controles e não ter o que controlar, então vamos entrar no obj_player e adicionar os seguintes eventos:
+
+- Criar.
+- Etapa.
+
+No evento Criar, por enquanto, vamos definir somente a velocidade dele:
+
+    //Create
+    
+    spd = 3
+
+> Observação: A coordenada (0,0) numa sala do GameMaker fica no canto superior esquerdo e seu limite fica no canto inferior direito, logo:
+> - Movimentos "positivos" levam o player para a direita e para baixo
+> - Movimentos "negativos" levam o player para a esquerda e para cima
+
+Agora vamos ao evento Etapa e, só para testes, vamos só fazer ele se mexer sem controle nenhum:
+
+    //Step
+    
+    x += spd
+    y += spd
+
+> Usaremos movimentos positivos aqui como devem ter notado pelo fato de que a posição do player é somada com a velocidade. Isso deve fazer o player deslizar na diagonal para direita e para baixo.
+
+É uma boa maneira de saber se a velocidade dele está boa antes de aplicar o controle.
+Então vamos descobrir! Clique no botão com símbolo de _play_ ou aperte F5 para rodar o jogo e você verá algo lindo:
+
+**Absolutamente Nada!**
+
+Pois é, o jogo não vai funcionar antes de nós configurarmos pelo menos uma **sala** no jogo, e é isso que faremos agora!
+
+## Criando uma Sala
+
+Vamos usar aquela mesma sala que o GameMaker já criou para nós, mas vamos fazer duas coisas antes: criar uma pasta chamada **"Rooms"** e renomar essa sala para **"rm_teste"**.
