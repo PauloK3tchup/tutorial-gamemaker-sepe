@@ -115,7 +115,7 @@ Nessa página inicial nós podemos reparar em quatro coisas principais:
 - As outras opções e configurações acima.
 - O Console abaixo (ele começa fechado).
 
-> Além desses quatro também existem várias outras telas como o **Editor de Sprite**, o **Editor de Objetos** e o **Editor de Ambientes**, mas esses nós ainda vamos conhecer ao longo da aula.
+> Além desses quatro também existem várias outras telas como o **Editor de Sprite**, o **Editor de Objetos** e o **Editor de Salas**, mas esses nós ainda vamos conhecer ao longo da aula.
 
 Começaremos pelos recursos.
 
@@ -215,6 +215,31 @@ Pois é, o jogo não vai funcionar antes de nós configurarmos pelo menos uma **
 ## Criando uma Sala
 
 Vamos usar aquela mesma sala que o GameMaker já criou para nós, mas vamos fazer duas coisas antes: criar uma pasta chamada **"Rooms"** e renomar essa sala para **"rm_teste"**.
+
+![sala](/img/grupo_salas.png)
+
+Agora, clicando duas vezes nessa sala, vamos abrir o **Editor de Sala**.
+
+Aqui, todo o esquema fica no **Inspetor**.
+
+![inspetor da sala](/img/inspetor_sala.png)
+
+Acima nós temos as camadas, abaixo nós temos as configurações da sala num todo.
+
+Sendo bem direto no que faremos aqui:
+
+- Mudaremos a altura e largura da sala para 1000x1000.
+- Na sessão "Visores e Câmeras" vamos:
+  - Marcar a opção "Ativar Visor".
+  - Abrir o Visor 0 e marcar a opção "Visível".
+  - Vamos mudar o tamanho do visor e da câmera para 640x480.
+  - Mudar o "Objeto seguido" para o obj_player e as bordas para 100.
+- Colocaremos o obj_player na camada "Instances".
+- Adicionaremos uma camada de instâncias chamada "Hud" e colocaremos o obj_controle nessa camada.
+
+> **Explicação**: Visores e câmeras são usados para controlar o que o jogador vê na tela, o visor determina **que** parte da sala é exibida, enquanto a câmera determina **como** essa parte da tela é exibida, e essa exibição é chamada e "Visão" ou "View". As mudanças que fizemos no tamanho do visor é para que nosso jogo tenha a resolução de 640x480 e a determinação do objeto seguido é para que a câmera siga o player.
+
+Não vamos mexer nas físicas da sala por enquanto.
 
 ## Criando um Sprite
 
