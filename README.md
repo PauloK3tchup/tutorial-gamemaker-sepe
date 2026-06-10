@@ -6,17 +6,20 @@ _Elaborado por Paulo Cesar Nicolau Padilha, do quinto período de Bacharelado em
 
 ## Sumário
 
-- [Introdução ao GameMaker](#introdução-ao-gamemaker)
-- [Instalação do GameMaker](#instalação-do-gamemaker)
-  - [Ubuntu](#ubuntu)
-  - [Windows](#windows)
-- [Criação do Projeto](#criação-do-projeto)
-- [Conhecendo o espaço de trabalho do GameMaker](#conhecendo-o-espaço-de-trabalho-do-gamemaker)
-- [Criando os Objetos](#criando-os-objetos)
-  - [Eventos](#eventos)
-- [Criando uma Sala](#criando-uma-sala)
-- [Controlando o Player](#controlando-o-player)
-- [Fazendo Sprites](#fazendo-sprites)
+- [Criação de um Jogo 2D com o GameMaker](#criação-de-um-jogo-2d-com-o-gamemaker)
+  - [Sumário](#sumário)
+  - [Introdução ao GameMaker](#introdução-ao-gamemaker)
+  - [Instalação do GameMaker](#instalação-do-gamemaker)
+    - [Ubuntu](#ubuntu)
+    - [Windows](#windows)
+  - [Criação do Projeto](#criação-do-projeto)
+  - [Conhecendo o espaço de trabalho do GameMaker](#conhecendo-o-espaço-de-trabalho-do-gamemaker)
+  - [Criando os objetos](#criando-os-objetos)
+    - [Eventos](#eventos)
+      - [Os inputs do player](#os-inputs-do-player)
+  - [Criando uma Sala](#criando-uma-sala)
+  - [Criando um Sprite](#criando-um-sprite)
+  - [Controlando o Player](#controlando-o-player)
 
 ---
 
@@ -99,7 +102,7 @@ Seja bem-vindo ao espaço de trabalho do GameMaker!
 
 **ANTES DE TUDO**!!! Se você estiver no **Linux**, clique no ícone de alvo no canto superior direito ta tela, aqui fica as opções de que plataforma você vai selecionar pra rodar o jogo, o padrão é a opção "Testar". Selecione a opção **"GX.games"** para que o jogo rode no navegador. O GameMaker exige muito mais etapas de instalação para rodar nativamente no Linux e muitas delas não são possíveis de serem executadas nos computadores do IFC (ou de qualquer escola que bloqueia acesso ao admin), mas rodar no navegador não exige nenhuma configuração a mais.
 
-![alt text](/img/gxgames.png)
+![plataformas](/img/gxgames.png)
 
 Se estiver no **Windows**, pode deixar na opção "Testar" mesmo, que o jogo vai rodar normalmente.
 
@@ -118,17 +121,25 @@ Começaremos pelos recursos.
 
 ## Criando os objetos
 
-Como devem ter notado, o GameMaker já cria uma sala inicial pro jogo funcionar. Manteremos essa sala existindo para usá-la futuramente. Agora, clicando com o botão direito no espaço vazio abaixo da sala, vamos criar um **grupo** chamado "Objects", e dentro desse grupo criaremos dois objetos, um chamado "obj_player" e outro chamado "obj_controle". Clicando duas vezes em um desses objetos vai abrir o **Editor de Objeto**, nessa tela nós podemos mudar o sprite, a máscara de colisão e o mais importante: os **Eventos**! Antes de partirmos para os eventos, entretanto, vamos escolher o _obj_controle_ para começar e vamos marcar a opção "persistente" no editor dele.
+Como devem ter notado, o GameMaker já cria uma sala inicial pro jogo funcionar. Manteremos essa sala existindo para usá-la futuramente. Agora, clicando com o botão direito no espaço vazio abaixo da sala, vamos criar um **grupo** chamado "Objects", e dentro desse grupo criaremos dois objetos, um chamado "obj_player" e outro chamado "obj_controle".
+
+![grupo de objetos](/img/grupo-objects.png)
+
+Clicando duas vezes em um desses objetos vai abrir o **Editor de Objeto**, nessa tela nós podemos mudar o sprite, a máscara de colisão e o mais importante: os **Eventos**! Antes de partirmos para os eventos, entretanto, vamos escolher o _obj_controle_ para começar e vamos marcar a opção "persistente" no editor dele.
+
+![editor de objeto](/img/editor_obj.png)
 
 ### Eventos
 
 Os eventos controlam quando e como o jogo vai rodar os códigos que foram escritos. Nesse objeto que estamos editando agora, vamos usar dois eventos à princípio:
 
 - Evento **Criar**: Os códigos nesse evento rodam somente uma vez quando o objeto é criado no jogo.
-- Evento **Etapa Inicial**: Os códigos nesse evento rodam em todos os frames do jogo, mas **antes** do evento **Etapa***.
+- Evento **Etapa Inicial**: Os códigos nesse evento rodam em todos os frames do jogo, mas **antes** do evento **Etapa\***.
 
-> *O GameMaker possui três variações do evento etapa:
-> 
+![eventos](/img/eventos.png)
+
+> \*O GameMaker possui três variações do evento etapa:
+>
 > - Etapa Inicial: Roda antes do etapa.
 > - Etapa: Roda "no meio".
 > - Etapa Final: Roda após o etapa.
@@ -142,7 +153,7 @@ Esse objeto servirá de controle para certas variáveis que devem existir a todo
 Pro jogo realmente funcionar como um jogo nós devemos ser capazes de controlar os menus e os personagens, então abriremos o evento **Criar** e vamos escrever o seguinte código:
 
     //Create
-    
+
     global.btn_cima = false
     global.btn_baixo = false
     global.btn_esq = false
@@ -153,37 +164,40 @@ Pro jogo realmente funcionar como um jogo nós devemos ser capazes de controlar 
 Esse vai ser o código básico de controle direcional. Mas ele não vai funcionar ainda, até por que ele está false em todos os botões, então vamos fazer esse código funcionar no evento **Etapa Inicial**:
 
     //Begin Step
-    
+
     global.btn_cima = keyboard_check(ord("W"))
     global.btn_baixo = keyboard_check(ord("S"))
     global.btn_esq = keyboard_check(ord("A"))
     global.btn_dir = keyboard_check(ord("D"))
 
 > **"keyboard_check"** é uma função que lê o input da tecla que foi dada de parâmetro e retorna true enquanto ele estiver sendo segurado. Essa função tem algumas variações como o **"keyboard_check_pressed"** e o **"keyboard_check_released"** que retornam true em contextos diferentes e outras.
-> 
+>
 > **"ord()"** é uma função que recebe um caractere e retorna seu valor Unicode (UTF8). Isso é necessário para que o GameMaker leia as letras do teclado.
 
 Agora o jogo está lendo o input nas teclas W, A, S e D e associando eles à variáveis de botão pra cima, esquerda, baixo e direita respectivamente. E agora, já que estamos usando o **keyboard_check** na **Etapa Inicial**, o jogo vai saber se essas teclas estão sendo pressionadas antes de executar qualquer coisa que esteja no evento **Etapa** de qualquer outro objeto!
 
-Mas não adiante ter os controles e não ter o que controlar, então vamos entrar no obj_player e adicionar os seguintes eventos:
+Mas não adiante ter os controles e não ter o que controlar, então vamos entrar no **obj_player** e adicionar os seguintes eventos:
 
 - Criar.
 - Etapa.
 
+![objeto player](/img/obj_player.png)
+
 No evento Criar, por enquanto, vamos definir somente a velocidade dele:
 
     //Create
-    
+
     spd = 3
 
 > Observação: A coordenada (0,0) numa sala do GameMaker fica no canto superior esquerdo e seu limite fica no canto inferior direito, logo:
+>
 > - Movimentos "positivos" levam o player para a direita e para baixo
 > - Movimentos "negativos" levam o player para a esquerda e para cima
 
 Agora vamos ao evento Etapa e, só para testes, vamos só fazer ele se mexer sem controle nenhum:
 
     //Step
-    
+
     x += spd
     y += spd
 
@@ -191,6 +205,8 @@ Agora vamos ao evento Etapa e, só para testes, vamos só fazer ele se mexer sem
 
 É uma boa maneira de saber se a velocidade dele está boa antes de aplicar o controle.
 Então vamos descobrir! Clique no botão com símbolo de _play_ ou aperte F5 para rodar o jogo e você verá algo lindo:
+
+![nada](/img/escuro.png)
 
 **Absolutamente Nada!**
 
@@ -200,7 +216,7 @@ Pois é, o jogo não vai funcionar antes de nós configurarmos pelo menos uma **
 
 Vamos usar aquela mesma sala que o GameMaker já criou para nós, mas vamos fazer duas coisas antes: criar uma pasta chamada **"Rooms"** e renomar essa sala para **"rm_teste"**.
 
-(parte em falta por enquanto!!!!!)
+## Criando um Sprite
 
 ## Controlando o Player
 
@@ -232,10 +248,10 @@ Consequentemente, podemos chegar na seguinte conclusão:
 
     //Subtraímos o lado "negativo" do lado "positivo" do movimento
     global.btn_dir - global.btn_esq
-    
+
     //Se nenhum botão for apertado:
     global.btn_dir - global.btn_esq = 0
-    
+
     //Se o botão esquerdo for apertado:
     global.btn_dir - global.btn_esq = -1
 
@@ -253,10 +269,9 @@ Como podem ver, o resultado da subtração entre o lado positivo e o negativo tr
     y += vsp
 
 > **Explicação do código**:
+>
 > > - **var**: é usado para declarar uma variável local, só usada dentro do escopo que foi declarada. Nesse caso, criamos a variável **"hsp"**.
-> > - <strong>(global.btn_dir - global.btn_esq)*spd</strong>: o resultado da subtração é multiplicado pela velocidade.
+> > - <strong>(global.btn_dir - global.btn_esq)\*spd</strong>: o resultado da subtração é multiplicado pela velocidade.
 > > - **x += hsp**: somamos o hsp à coordenada **x** do player.
 
 Poderíamos apertar F5 e ver o jogo em ação agora mesmo, mas ainda não iríamos ver nada, pois ainda falta uma coisa pro nosso obj_player.
-
-## Fazendo Sprites
