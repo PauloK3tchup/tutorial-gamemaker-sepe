@@ -237,11 +237,39 @@ Sendo bem direto no que faremos aqui:
 - Colocaremos o obj_player na camada "Instances".
 - Adicionaremos uma camada de instâncias chamada "Hud" e colocaremos o obj_controle nessa camada.
 
-> **Explicação**: Visores e câmeras são usados para controlar o que o jogador vê na tela, o visor determina **que** parte da sala é exibida, enquanto a câmera determina **como** essa parte da tela é exibida, e essa exibição é chamada e "Visão" ou "View". As mudanças que fizemos no tamanho do visor é para que nosso jogo tenha a resolução de 640x480 e a determinação do objeto seguido é para que a câmera siga o player.
+> **Explicação**: Visores e câmeras são usados para controlar o que o jogador vê na tela, o visor determina **que** parte da sala é exibida, enquanto a câmera determina **como** essa parte da tela é exibida, e essa exibição é chamada e "Visão" ou "View". As mudanças que fizemos no tamanho do visor e da câmera é para que nosso jogo tenha a resolução de 640x480 e a determinação do objeto seguido é para que a câmera siga o player. Caso você queira que a câmera se aproxime ou se afaste do player, mude o valor da **câmera**, não do visor!
 
-Não vamos mexer nas físicas da sala por enquanto.
+Não vamos mexer nas físicas da sala hoje, pois vamos simular nossa própria física simples.
+
+Agora, antes de darmos F5, precisamos dar uma **aparência** ao nosso obj_player para que ele fique visível na tela.
 
 ## Criando um Sprite
+
+Na aba de recursos, vamos criar um novo grupo chamado "Sprites" e dentro desse grupo vamos criar um sprite chamado "spr_player".
+
+![recursos estrutura](/img/estrutura.png)
+
+> **Imagem:** Estrutura completa até agora!
+
+Clicando duas vezes nesse sprite, vamos abrir o **Editor de Sprite**.
+
+![editor de sprite](/img/editor_de_sprite.png)
+
+Aqui, nós podemos criar a aparência do nosso player e mexer em suas propriedades. Podemos clicar no botão "Editar Imagem" para abrir o editor de imagens ou clicar em "Importar" para importar uma imagem existente. Vamos mudar o tamanho do sprite pra 32x32 e clicar em "Editar Imagem".
+
+![editor de imagem](/img/editor_de_imagem.png)
+
+O editor é bem simples, trate-se de um programa de desenho embutido com ferramentas básicas. Por enquanto, vamos desenhar apenas um retângulo colorido para representar o jogador.
+
+Retornando ao editor de sprite, vamos mudar a origem do sprite para o centro clicando no dropdown do canto superior esquerdo. Isso siginifica que qualquer movimento, rotação e outras coisas de movimento vão ser calculados a partir do centro do sprite, e não da borda superior esquerda, que é o padrão.
+
+![sprite do player](/img/spr_player.png)
+
+> **Dica Extra**: No editor de sprite também temos algumas outras opções importantes, como as de textura e o nine slice, mas uma que eu destaco é a **Máscara de colisão**, pois nela você pode definir o tamanho e posição da "hitbox" do sprite.
+
+Agora vamos clicar duas vezes no obj_player para abrir o editor de objetos e vamos mudar o sprite do player para o spr_player que acabamos de criar.
+
+![player com sprite](/img/player_com_sprite.png)
 
 ## Controlando o Player
 
