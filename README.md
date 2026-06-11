@@ -20,6 +20,8 @@ _Elaborado por Paulo Cesar Nicolau Padilha, do quinto período de Bacharelado em
   - [Criando uma Sala](#criando-uma-sala)
   - [Criando um Sprite](#criando-um-sprite)
   - [Controlando o Player](#controlando-o-player)
+    - [Movimento](#movimento)
+    - [Colisões](#colisões)
 
 ---
 
@@ -233,7 +235,7 @@ Sendo bem direto no que faremos aqui:
   - Marcar a opção "Ativar Visor".
   - Abrir o Visor 0 e marcar a opção "Visível".
   - Vamos mudar o tamanho do visor e da câmera para 640x480.
-  - Mudar o "Objeto seguido" para o obj_player e as bordas para 100.
+  - Mudar o "Objeto seguido" para o obj_player, a borda vertical para 240 e a borda horizontal para 320.
 - Colocaremos o obj_player na camada "Instances".
 - Adicionaremos uma camada de instâncias chamada "Hud" e colocaremos o obj_controle nessa camada.
 
@@ -271,7 +273,17 @@ Agora vamos clicar duas vezes no obj_player para abrir o editor de objetos e vam
 
 ![player com sprite](/img/player_com_sprite.png)
 
+> **Observação:** Como deve ter reparado existe uma opção de "Máscara de colisão" logo abaixo da definição do sprite, essa opção serve para que o objeto tenha uma hitbox diferente do sprite original dele.
+
+Agora nós podemos dar F5 e ver nosso obj_player se movendo maravilhosamente!
+
+![primeiro teste](/img/primeiro_teste.png)
+
+Entretando, o movimento dele ainda não é controlável, então vamos apagar esse código de etapa que escrevemos e vamos começar do zero.
+
 ## Controlando o Player
+
+### Movimento
 
 Agora nós vamos voltar ao evento Etapa do nosso obj_player e vamos pensar um pouco no seguinte:
 
@@ -327,4 +339,14 @@ Como podem ver, o resultado da subtração entre o lado positivo e o negativo tr
 > > - <strong>(global.btn_dir - global.btn_esq)\*spd</strong>: o resultado da subtração é multiplicado pela velocidade.
 > > - **x += hsp**: somamos o hsp à coordenada **x** do player.
 
-Poderíamos apertar F5 e ver o jogo em ação agora mesmo, mas ainda não iríamos ver nada, pois ainda falta uma coisa pro nosso obj_player.
+Apertando F5, o jogo permanece o mesmo visualmente, mas agora o player se move de acordo com os inputs do teclado!
+
+Entretanto, o player não possui limites, barreiras, nada que o impeça de sair andando pra fora da sala, e isso não é algo que queremos, então vamos adicionar uma coisa **muito** importante.
+
+### Colisões
+
+Criaremos um obj_parede, ele não precisa de código nenhum, por enquanto ele será visível e terá um sprite de cor bem diferente do player.
+
+![objeto parede](/img/obj_parede.png)
+
+Vamos criar uma camada "Collisions" colocar algumas instâncias desse objeto na sala, aqui vocês podem mexer no tamanho e posição desses, só não recomendo mexer no ângulo por enquanto.
