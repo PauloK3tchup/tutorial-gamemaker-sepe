@@ -350,3 +350,28 @@ Criaremos um obj_parede, ele não precisa de código nenhum, por enquanto ele se
 ![objeto parede](/img/obj_parede.png)
 
 Vamos criar uma camada "Collisions" colocar algumas instâncias desse objeto na sala, aqui vocês podem mexer no tamanho e posição desses, só não recomendo mexer no ângulo por enquanto.
+Entretando, nem adianta dar F5 pra testar pois ainda não fizemos o código da colisão.
+
+Voltando ao evento etapa do obj_player, substitua esse código:
+
+    x += hsp
+    y += vsp
+
+Por esse:
+
+    if place_meeting(x + hsp, y, obj_parede) {
+      while (!place_meeting(x + sign(hsp),y,obj_parede)) {
+        x += sign(hsp)
+      }
+      x += hsp
+    }
+    
+    if place_meeting(x, y + vsp, obj_parede) {
+      while (!place_meeting(x,y + sign(vsp),obj_parede)) {
+        y += sign(vsp)
+      }
+      y += vsp
+    }
+
+> **Explicação:** Depois eu escrevo kk
+> **Observação:** Mantenha os IFs separados, depois eu explico o pq também
