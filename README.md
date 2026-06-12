@@ -16,7 +16,7 @@ _Elaborado por Paulo Cesar Nicolau Padilha, do quinto período de Bacharelado em
   - [Conhecendo o espaço de trabalho do GameMaker](#conhecendo-o-espaço-de-trabalho-do-gamemaker)
   - [Criando os objetos](#criando-os-objetos)
     - [Eventos](#eventos)
-      - [Os inputs do player](#os-inputs-do-player)
+    - [Os inputs do player](#os-inputs-do-player)
   - [Criando uma Sala](#criando-uma-sala)
   - [Criando um Sprite](#criando-um-sprite)
   - [Controlando o Player](#controlando-o-player)
@@ -150,7 +150,7 @@ Os eventos controlam quando e como o jogo vai rodar os códigos que foram escrit
 
 Esse objeto servirá de controle para certas variáveis que devem existir a todo momento no jogo, e vamos começar pelas mais importantes:
 
-#### Os inputs do player
+### Os inputs do player
 
 Pro jogo realmente funcionar como um jogo nós devemos ser capazes de controlar os menus e os personagens, então abriremos o evento **Criar** e vamos escrever o seguinte código:
 
