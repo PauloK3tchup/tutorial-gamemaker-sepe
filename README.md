@@ -363,15 +363,17 @@ Por esse:
       while (!place_meeting(x + sign(hsp),y,obj_parede)) {
         x += sign(hsp)
       }
-      x += hsp
+      hsp = 0
     }
+    x += hsp
     
     if place_meeting(x, y + vsp, obj_parede) {
       while (!place_meeting(x,y + sign(vsp),obj_parede)) {
         y += sign(vsp)
       }
-      y += vsp
+      vsp = 0
     }
+    y += vsp
 
 > **Explicação:** Depois eu escrevo kk
 > **Observação:** Mantenha os IFs separados, depois eu explico o pq também
