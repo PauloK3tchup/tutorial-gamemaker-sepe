@@ -1,3 +1,9 @@
+---
+layout: default
+title: Criação de um Jogo 2D com o GameMaker
+description: Elaborado por Paulo Cesar Nicolau Padilha, do quinto período de Bacharelado em Sistemas de Informação - Instituto Federal Catarinense Campus Araquari
+---
+
 # Informações
 
 Essa é a documentação do tutorial de criação de um jogo 2D no GameMaker para a Semana de Estudo, Pesquisa e Extensão do Instituto Federal Catarinense Campus Araquari de 2026.
