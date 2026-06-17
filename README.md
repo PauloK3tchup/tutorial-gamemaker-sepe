@@ -1,5 +1,6 @@
 ---
 layout: default
+title: Home
 ---
 
 # Criação de um Jogo 2D com o GameMaker
