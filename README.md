@@ -355,7 +355,7 @@ Criaremos um obj_parede, ele não precisa de código nenhum, por enquanto ele se
 
 > Lembre-se de manter a origem do sprite no **centro**!
 
-Vamos criar uma camada "Collisions" e colocar algumas instâncias desse objeto na sala, aqui vocês podem mexer no tamanho e posição dessas instâncias, só não recomendo mexer no ângulo por enquanto.
+Agora, vamos criar uma camada "Collisions" e colocar algumas instâncias desse objeto na sala, aqui vocês podem mexer no tamanho e posição dessas instâncias, só não recomendo mexer no ângulo por enquanto.
 Entretando, nem adianta dar F5 pra testar pois ainda não fizemos o código da colisão.
 
 Voltando ao evento etapa do obj_player, substitua esse código:
@@ -388,3 +388,5 @@ Por esse:
 > - **x += hsp (ou o y += vsp)**: Aplica a velocidade à posição do player.
 > 
 > **Observação:** É recomendável que mantenha essas duas estruturas lógicas **separadas** para evitar conflitos na colisão horizontal e vertical.
+
+Apertando o F5 e rodando o jogo, agora nós podemos ver nosso obj_player se mexendo pela tela e colidindo com as paredes colocadas!
