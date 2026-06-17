@@ -349,6 +349,8 @@ Criaremos um obj_parede, ele não precisa de código nenhum, por enquanto ele se
 
 ![objeto parede](/img/obj_parede.png)
 
+> Lembre-se de manter a origem do sprite no **centro**!
+
 Vamos criar uma camada "Collisions" e colocar algumas instâncias desse objeto na sala, aqui vocês podem mexer no tamanho e posição dessas instâncias, só não recomendo mexer no ângulo por enquanto.
 Entretando, nem adianta dar F5 pra testar pois ainda não fizemos o código da colisão.
 
@@ -376,7 +378,7 @@ Por esse:
     y += vsp
 
 > **Explicação:**
-> - **if place_meeting(...)**: Verifica se o player está em colisãa com a parede.
+> - **if place_meeting(...)**: Verifica se o player está em colisão com a parede.
 > - **loop while**: Faz uma verificação extra pixel por pixel pra garantir que o player esteja, de fato, colidindo com a parede.
 > - **hsp = 0 (ou o vsp = 0)**: Zera a velocidade para que o player pare.
 > - **x += hsp (ou o y += vsp)**: Aplica a velocidade à posição do player.
