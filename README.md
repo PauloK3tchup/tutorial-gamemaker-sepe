@@ -1,10 +1,10 @@
-# Criação de um Jogo 2D com o GameMaker
+# Informações
 
-_Elaborado por Paulo Cesar Nicolau Padilha, do quinto período de Bacharelado em Sistemas de Informação - Instituto Federal Catarinense Campus Araquari_
+Essa é a documentação do tutorial de criação de um jogo 2D no GameMaker para a Semana de Estudo, Pesquisa e Extensão do Instituto Federal Catarinense Campus Araquari de 2026.
 
 ---
 
-## Sumário
+# Sumário
 
 - [Criação de um Jogo 2D com o GameMaker](#criação-de-um-jogo-2d-com-o-gamemaker)
   - [Sumário](#sumário)
@@ -25,7 +25,7 @@ _Elaborado por Paulo Cesar Nicolau Padilha, do quinto período de Bacharelado em
 
 ---
 
-## Introdução ao GameMaker
+# Introdução ao GameMaker
 
 Antigamente conhecido como GameMaker Studio 2, a engine GameMaker é uma ferramenta de criação de jogos famosa por sua simplicidade e facilidade de começar a utilizá-la, embora seja relativamente menos poderosa que outras engines como a Unity ou a Godot. Seu foco principal é em jogos 2D, possuindo um certo suporte à gráficos 3D limitados, e sua grande vantagem é a maneira com que ela é realmente perfeita para esse tipo de jogo. Muitos jogos 2D populares e aclamados, especialmente independentes, foram feitos à partir do GameMaker, alguns que posso destacar são:
 
@@ -48,9 +48,9 @@ Mas agora, antes de começar o desenvolvimento, precisamos primeiramente instala
 
 ---
 
-## Instalação do GameMaker
+# Instalação do GameMaker
 
-#### Ubuntu
+### Ubuntu
 
 Para Instalar o GameMaker no Ubuntu, basta executar o seguinte comando no terminal:
 
@@ -64,7 +64,7 @@ O comando vai a senha da sua conta de usuário, digite-a para prosseguir com a i
 > > - **sudo dpkg -i gamemaker.deb**: Ele instala o arquivo de instalação.
 > > - **rm gamemaker.deb**: Ele remove o arquivo de instalação.
 
-#### Windows
+### Windows
 
 No Windows, basta acessar a [página de download](https://gamemaker.io/pt-BR/download) do site oficial e selecionar a opção Windows (ou clicando nesse [link direto](https://gms.yoyogames.com/GameMaker-Installer-2026.0.0.16.exe) que eu coloquei aqui) que o arquivo de instalação será baixado. Depois de baixar, basta executar o arquivo para instalar o GameMaker.
 
@@ -72,7 +72,7 @@ No Windows, basta acessar a [página de download](https://gamemaker.io/pt-BR/dow
 
 ---
 
-## Criação do Projeto
+# Criação do Projeto
 
 Após instalar o GameMaker, abra o programa e clique no botão "New" para criar um novo projeto.
 
@@ -96,7 +96,7 @@ Depois que tudo estiver feito, clique no botão "Let's Go!".
 
 ---
 
-## Conhecendo o espaço de trabalho do GameMaker
+# Conhecendo o espaço de trabalho do GameMaker
 
 Seja bem-vindo ao espaço de trabalho do GameMaker!
 
@@ -121,7 +121,7 @@ Nessa página inicial nós podemos reparar em quatro coisas principais:
 
 Começaremos pelos recursos.
 
-## Criando os objetos
+# Criando os objetos
 
 Como devem ter notado, o GameMaker já cria uma sala inicial pro jogo funcionar. Manteremos essa sala existindo para usá-la futuramente. Agora, clicando com o botão direito no espaço vazio abaixo da sala, vamos criar um **grupo** chamado "Objects", e dentro desse grupo criaremos dois objetos, um chamado "obj_player" e outro chamado "obj_controle".
 
@@ -131,7 +131,7 @@ Clicando duas vezes em um desses objetos vai abrir o **Editor de Objeto**, nessa
 
 ![editor de objeto](/img/editor_obj.png)
 
-### Eventos
+## Eventos
 
 Os eventos controlam quando e como o jogo vai rodar os códigos que foram escritos. Nesse objeto que estamos editando agora, vamos usar dois eventos à princípio:
 
@@ -214,7 +214,7 @@ Então vamos descobrir! Clique no botão com símbolo de _play_ ou aperte F5 par
 
 Pois é, o jogo não vai funcionar antes de nós configurarmos pelo menos uma **sala** no jogo, e é isso que faremos agora!
 
-## Criando uma Sala
+# Criando uma Sala
 
 Vamos usar aquela mesma sala que o GameMaker já criou para nós, mas vamos fazer duas coisas antes: criar uma pasta chamada **"Rooms"** e renomar essa sala para **"rm_teste"**.
 
@@ -245,7 +245,7 @@ Não vamos mexer nas físicas da sala hoje, pois vamos simular nossa própria f�
 
 Agora, antes de darmos F5, precisamos dar uma **aparência** ao nosso obj_player para que ele fique visível na tela.
 
-## Criando um Sprite
+# Criando um Sprite
 
 Na aba de recursos, vamos criar um novo grupo chamado "Sprites" e dentro desse grupo vamos criar um sprite chamado "spr_player".
 
@@ -281,9 +281,9 @@ Agora nós podemos dar F5 e ver nosso obj_player se movendo maravilhosamente!
 
 Entretando, o movimento dele ainda não é controlável, então vamos apagar esse código de etapa que escrevemos e vamos começar do zero.
 
-## Controlando o Player
+# Controlando o Player
 
-### Movimento
+## Movimento
 
 Agora nós vamos voltar ao evento Etapa do nosso obj_player e vamos pensar um pouco no seguinte:
 
@@ -343,7 +343,7 @@ Apertando F5, o jogo permanece o mesmo visualmente, mas agora o player se move d
 
 Entretanto, o player não possui limites, barreiras, nada que o impeça de sair andando pra fora da sala, e isso não é algo que queremos, então vamos adicionar uma coisa **muito** importante.
 
-### Colisões
+## Colisões
 
 Criaremos um obj_parede, ele não precisa de código nenhum, por enquanto ele será visível e terá um sprite de cor bem diferente do player.
 
