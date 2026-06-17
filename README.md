@@ -14,6 +14,8 @@ Essa é a documentação do tutorial de criação de um jogo 2D no GameMaker par
     - [Windows](#windows)
   - [Criação do Projeto](#criação-do-projeto)
   - [Conhecendo o espaço de trabalho do GameMaker](#conhecendo-o-espaço-de-trabalho-do-gamemaker)
+    - [Configuração da plataforma](#configuração-da-plataforma)
+    - [Áreas principais](#áreas-principais)
   - [Criando os objetos](#criando-os-objetos)
     - [Eventos](#eventos)
     - [Os inputs do player](#os-inputs-do-player)
@@ -102,6 +104,8 @@ Seja bem-vindo ao espaço de trabalho do GameMaker!
 
 ![tela](/img/espaco-de-trabalho.png)
 
+## Configuração da plataforma
+
 **ANTES DE TUDO**!!! Se você estiver no **Linux**, clique no ícone de alvo no canto superior direito ta tela, aqui fica as opções de que plataforma você vai selecionar pra rodar o jogo, o padrão é a opção "Testar". Selecione a opção **"GX.games"** para que o jogo rode no navegador. O GameMaker exige muito mais etapas de instalação para rodar nativamente no Linux e muitas delas não são possíveis de serem executadas nos computadores do IFC (ou de qualquer escola que bloqueia acesso ao admin), mas rodar no navegador não exige nenhuma configuração a mais.
 
 ![plataformas](/img/gxgames.png)
@@ -109,6 +113,8 @@ Seja bem-vindo ao espaço de trabalho do GameMaker!
 Se estiver no **Windows**, pode deixar na opção "Testar" mesmo, que o jogo vai rodar normalmente.
 
 Agora podemos voltar ao espaço de trabalho.
+
+## Áreas principais
 
 Nessa página inicial nós podemos reparar em quatro coisas principais:
 
@@ -150,7 +156,7 @@ Os eventos controlam quando e como o jogo vai rodar os códigos que foram escrit
 
 Esse objeto servirá de controle para certas variáveis que devem existir a todo momento no jogo, e vamos começar pelas mais importantes:
 
-### Os inputs do player
+## Os inputs do player
 
 Pro jogo realmente funcionar como um jogo nós devemos ser capazes de controlar os menus e os personagens, então abriremos o evento **Criar** e vamos escrever o seguinte código:
 
