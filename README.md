@@ -1,12 +1,9 @@
-## Informações
-
-Essa é a documentação do tutorial de criação de um jogo 2D no GameMaker para a Semana de Estudo, Pesquisa e Extensão do Instituto Federal Catarinense Campus Araquari de 2026.
-
+*Essa é a documentação do tutorial de criação de um jogo 2D no GameMaker para a Semana de Estudo, Pesquisa e Extensão do Instituto Federal Catarinense Campus Araquari de 2026.
+*
 ---
 
 ## Sumário
 
-- [Informações](#informações)
 - [Sumário](#sumário)
 - [Introdução ao GameMaker](#introdução-ao-gamemaker)
 - [Instalação do GameMaker](#instalação-do-gamemaker)
