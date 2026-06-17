@@ -349,7 +349,7 @@ Criaremos um obj_parede, ele não precisa de código nenhum, por enquanto ele se
 
 ![objeto parede](/img/obj_parede.png)
 
-Vamos criar uma camada "Collisions" colocar algumas instâncias desse objeto na sala, aqui vocês podem mexer no tamanho e posição desses, só não recomendo mexer no ângulo por enquanto.
+Vamos criar uma camada "Collisions" e colocar algumas instâncias desse objeto na sala, aqui vocês podem mexer no tamanho e posição dessas instâncias, só não recomendo mexer no ângulo por enquanto.
 Entretando, nem adianta dar F5 pra testar pois ainda não fizemos o código da colisão.
 
 Voltando ao evento etapa do obj_player, substitua esse código:
@@ -375,5 +375,10 @@ Por esse:
     }
     y += vsp
 
-> **Explicação:** Depois eu escrevo kk
-> **Observação:** Mantenha os IFs separados, depois eu explico o pq também
+> **Explicação:**
+> - **if place_meeting(...)**: Verifica se o player está em colisãa com a parede.
+> - **loop while**: Faz uma verificação extra pixel por pixel pra garantir que o player esteja, de fato, colidindo com a parede.
+> - **hsp = 0 (ou o vsp = 0)**: Zera a velocidade para que o player pare.
+> - **x += hsp (ou o y += vsp)**: Aplica a velocidade à posição do player.
+> 
+> **Observação:** É recomendável que mantenha essas duas estruturas lógicas **separadas** para evitar conflitos na colisão horizontal e vertical.
