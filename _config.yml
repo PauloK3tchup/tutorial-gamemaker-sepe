@@ -1,1 +1,5 @@
-remote-theme: qwtel/jekyll-theme-hydejack
+title: Como fazer um jogo 2D no GameMaker
+description: Um tutorial para iniciantes.
+show_downloads: false
+google_analytics:
+theme: jekyll-theme-slate
