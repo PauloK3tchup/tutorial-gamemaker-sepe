@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Criação de um Jogo 2D com o GameMaker
 
 _Elaborado por Paulo Cesar Nicolau Padilha, do quinto período de Bacharelado em Sistemas de Informação - Instituto Federal Catarinense Campus Araquari_
