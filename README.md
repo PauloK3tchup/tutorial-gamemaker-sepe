@@ -26,6 +26,7 @@ _**AVISO: Esse tutorial está incompleto! Não terminei ele ainda!!**_
     - [Movimento](#movimento)
     - [Colisões](#colisões)
     - [Outras Variáveis](#outras-variáveis)
+    - [Atirando](#atirando)
 
 ---
 
@@ -42,7 +43,7 @@ Antigamente conhecido como GameMaker Studio 2, a engine GameMaker é uma ferrame
 
 Além de ser altamente acessível e fácil de se aprender, a engine também oferece um [enorme manual](https://manual.gamemaker.io/monthly/br/##t=Content.htm) em sua página oficial contendo guias de todas as funções e funcionalidades diferentes em vários idiomas, incluindo português brasileiro, que pode muito bem servir de material tanto para desenvolvedores iniciantes quanto experientes.
 
-Eu mesmo tenho alguns jogos na minha página do [itch.io](https://paulok3tchup.itch.io/) que podem servir de exemplo para vocês das capacidades dessa engine até mesmo nas mãos de um amador como eu.
+Eu mesmo tenho alguns jogos na minha página do [itch.io](https://paulok3tchup.itch.io/) que podem servir de exemplo para vocês das capacidades dessa engine até mesmo nas mãos de um desenvolvedor sem muita experiência como eu.
 
 > **Observação:** GameMaker é um software gratuito que permite que você crie e exporte os jogos gratuitamente para algumas plataformas sem problemas, _**ENTRETANTO**_ é necessário **comprar** uma licença para que o jogo possa ser comercializado e exportado para outras plataformas, como Nintendo Switch, Playstation e etc. Para mais informações sobre as licenças do GameMaker, acesse a [página de licenças](https://gamemaker.io/pt-BR/get).
 
@@ -423,3 +424,78 @@ O primeiro passo é definir algumas variáveis importantes no evento **Criar** d
 > - **delay_max e delay**: Definem o intervalo entre os tiros do player.
 >
 > **Como vai funcionar o tiro:** O player terá um tiro padrão com um dano e intervalos definidos, no futuro, se quiser, você pode adicionar itens/armas que mudam esses valores.
+
+Agora vamos voltar ao obj_controle rapidinho e vamos adicionar isso no evento Criar:
+
+    global.btn_tiro = false
+
+E isso no Etapa Inicial:
+
+    global.btn_tiro = mouse_check_button(mb_left)
+
+> **Explicação:**
+>
+> - **mouse_check_button(...)**: Lê o clique de algum botão do mouse de maneira contínua, enquanto estiver segurado ela será **true**, se soltar será **false**.
+> - **mb_left**: Especifica que é o botão esquerdo, poderia ser **mb_right**, **mb_middle** ou outros botões que o mouse pode ter.
+>
+> Assim, nós definimos qual será o botão utilizado para atirar no jogo.
+
+Agora vamos criar dois objetos simples: A mira e o próprio tiro.
+
+#### Atirando
+
+O objeto da mira vai ser bem simples, vamos só criar um obj_mira e um sprite bonitinho pra ela:
+
+/Foto
+
+Depois vamos no evento **Etapa Final** e adicionamos esse código:
+
+    x = mouse_x
+    y = mouse_y
+
+> **Explicação:**
+>
+> - **x = mouse_x (e o mesmo pro y)**: Lê a posição do mouse na tela e define a posição do objeto com base nela.
+> - **Etapa Final**: Essa é a versão do etapa que ocorre depois da etapa padrão, usamos ela aqui para garantir que o objeto sempre esteja na posição do mouse, pois o movimento do mouse é calculado durante a **Etapa** padrão.
+
+E agora só adicionamos esse objeto na camada "Hud" em qualquer lugar da sala.
+
+Mas antes de rodar o jogo, vamos criar o obj_tiro e um sprite bonito pra ele.
+
+//Foto
+
+> **Detalhe:** Quando desenhar esse sprite, garanta que ele esteja apontado para a direita!!!
+
+E vamos no evento Criar dele:
+
+    spd = 5
+
+E no evento Etapa:
+
+    speed = spd
+    image_angle = direction
+
+> **Explicação:**
+>
+> **Speed** é uma variável embutida do GameMaker que define o movimento de um objeto por etapa do jogo usando a outra variável embutida **direction** que define a direção desse movimento. O **image_angle** aqui só deixa o ângulo do sprite igual à variável direction.
+
+Diferente do obj_mira, esse aqui não será colocado manualmente na sala.
+
+Vamos voltar ao evento Etapa do obj_player e adicionar o seguinte:
+
+    //Step Event
+    
+    if delay > 0 delay--
+    
+    delay = clamp(delay,0,delay_max)
+
+    var ang = point_direction(x,y,obj_mira.x,obj_mira.y)
+
+    if delay <= 0 && global.btn_tiro {
+        delay = delay_max
+        var _tiro = instance_create_layer(x,y,"Instances",obj_tiro)
+        _tiro.direction = ang
+    }
+
+> **Explicação:**
+> _À fazer!_
