@@ -10,23 +10,21 @@ _**AVISO: Esse tutorial está incompleto! Não terminei ele ainda!!**_
 
 - [Sumário](#sumário)
 - [Introdução ao GameMaker](#introdução-ao-gamemaker)
-- [Instalação do GameMaker](#instalação-do-gamemaker)
-        - [Ubuntu](#ubuntu)
-        - [Windows](#windows)
+- [Instalação do GameMaker](#instalação-do-gamemaker) - [Ubuntu](#ubuntu) - [Windows](#windows)
 - [Criação do Projeto](#criação-do-projeto)
 - [Conhecendo o espaço de trabalho do GameMaker](#conhecendo-o-espaço-de-trabalho-do-gamemaker)
-    - [Configuração da plataforma](#configuração-da-plataforma)
-    - [Áreas principais](#áreas-principais)
+  - [Configuração da plataforma](#configuração-da-plataforma)
+  - [Áreas principais](#áreas-principais)
 - [Criando os objetos](#criando-os-objetos)
-    - [Eventos](#eventos)
-    - [Os inputs do player](#os-inputs-do-player)
+  - [Eventos](#eventos)
+  - [Os inputs do player](#os-inputs-do-player)
 - [Criando uma Sala](#criando-uma-sala)
 - [Criando um Sprite](#criando-um-sprite)
 - [Controlando o Player](#controlando-o-player)
-    - [Movimento](#movimento)
-    - [Colisões](#colisões)
-    - [Outras Variáveis](#outras-variáveis)
-    - [Atirando](#atirando)
+  - [Movimento](#movimento)
+  - [Colisões](#colisões)
+  - [Outras Variáveis](#outras-variáveis)
+  - [Atirando](#atirando)
 
 ---
 
@@ -361,7 +359,10 @@ Criaremos um obj_parede, ele não precisa de código nenhum, por enquanto ele se
 > Lembre-se de manter a origem do sprite no **centro**!
 
 Agora, vamos criar uma camada "Collisions" e colocar algumas instâncias desse objeto na sala, aqui vocês podem mexer no tamanho e posição dessas instâncias, só não recomendo mexer no ângulo por enquanto.
-Entretando, nem adianta dar F5 pra testar pois ainda não fizemos o código da colisão.
+
+![paredes](./img/paredes_no_mapa.png)
+
+Entretanto, nem adianta dar F5 pra testar pois ainda não fizemos o código da colisão.
 
 Voltando ao evento etapa do obj_player, substitua esse código:
 
@@ -404,16 +405,16 @@ Agora que o movimento base do nosso player está pronto, vamos começar a montar
 O primeiro passo é definir algumas variáveis importantes no evento **Criar** do nosso obj_player:
 
     //Create Event
-    
+
     spd = 3 //Vamos manter essa aqui igual
-    
+
     //Agora adicionamos essas:
-    
+
     vida_max = 100
     vida = vida_max
-    
+
     dano = 3
-    
+
     delay_max = 10
     delay = delay_max
 
@@ -446,7 +447,7 @@ Agora vamos criar dois objetos simples: A mira e o próprio tiro.
 
 O objeto da mira vai ser bem simples, vamos só criar um obj_mira e um sprite bonitinho pra ela:
 
-/Foto
+![objeto mira](./img/mira.png)
 
 Depois vamos no evento **Etapa Final** e adicionamos esse código:
 
@@ -462,7 +463,7 @@ E agora só adicionamos esse objeto na camada "Hud" em qualquer lugar da sala.
 
 Mas antes de rodar o jogo, vamos criar o obj_tiro e um sprite bonito pra ele.
 
-//Foto
+![objeto tiro](./img/tiro.png)
 
 > **Detalhe:** Quando desenhar esse sprite, garanta que ele esteja apontado para a direita!!!
 
@@ -484,9 +485,9 @@ Diferente do obj_mira, esse aqui não será colocado manualmente na sala.
 Vamos voltar ao evento Etapa do obj_player e adicionar o seguinte:
 
     //Step Event
-    
+
     if delay > 0 delay--
-    
+
     delay = clamp(delay,0,delay_max)
 
     var ang = point_direction(x,y,obj_mira.x,obj_mira.y)
