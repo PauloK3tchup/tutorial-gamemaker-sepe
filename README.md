@@ -1,6 +1,8 @@
-_Essa é a documentação do tutorial de criação de um jogo 2D no GameMaker para a Semana de Estudo, Pesquisa e Extensão do Instituto Federal Catarinense Campus Araquari de 2026._
+_Essa é a documentação do tutorial de criação de um jogo 2D Top-Down Shooter na Engine GameMaker para a Semana de Estudo, Pesquisa e Extensão do Instituto Federal Catarinense Campus Araquari de 2026._
 
 _O projeto usado de exemplo está disponível no repositório do Github desta página._
+
+_**AVISO: Esse tutorial está incompleto! Não terminei ele ainda!!**_
 
 ---
 
@@ -23,6 +25,7 @@ _O projeto usado de exemplo está disponível no repositório do Github desta p�
 - [Controlando o Player](#controlando-o-player)
     - [Movimento](#movimento)
     - [Colisões](#colisões)
+    - [Outras Variáveis](#outras-variáveis)
 
 ---
 
@@ -392,3 +395,31 @@ Por esse:
 > **Observação:** É recomendável que mantenha essas duas estruturas lógicas **separadas** para evitar conflitos na colisão horizontal e vertical.
 
 Apertando o F5 e rodando o jogo, agora nós podemos ver nosso obj_player se mexendo pela tela e colidindo com as paredes colocadas!
+
+#### Outras Variáveis
+
+Agora que o movimento base do nosso player está pronto, vamos começar a montar a jogabilidade desse jogo de verdade. Nosso jogo será um **top-down shooter!**
+
+O primeiro passo é definir algumas variáveis importantes no evento **Criar** do nosso obj_player:
+
+    //Create Event
+    
+    spd = 3 //Vamos manter essa aqui igual
+    
+    //Agora adicionamos essas:
+    
+    vida_max = 100
+    vida = vida_max
+    
+    dano = 3
+    
+    delay_max = 10
+    delay = delay_max
+
+> **Explicação:**
+>
+> - **vida_max e vida**: Definem a vida do player.
+> - **dano**: Define o dano que o tiro do player vai causar ao inimigo.
+> - **delay_max e delay**: Definem o intervalo entre os tiros do player.
+>
+> **Como vai funcionar o tiro:** O player terá um tiro padrão com um dano e intervalos definidos, no futuro, se quiser, você pode adicionar itens/armas que mudam esses valores.
