@@ -499,4 +499,54 @@ Vamos voltar ao evento Etapa do obj_player e adicionar o seguinte:
     }
 
 > **Explicação:**
-> _À fazer!_
+>
+> - **if delay > 0 delay--**: Diminui o valor do delay a cada etapa para que ele sempre volte ao 0.
+> - **delay = clamp(delay,0,delay_max)**: Mantém o valor do delay entre 0 e delay_max.
+> - **var ang = point_direction(x,y,obj_mira.x,obj_mira.y)**: Calcula a direção do tiro em relação à mira.
+> - **if delay <= 0 && global.btn_tiro**: Verifica se o delay chegou a 0 e se o botão de tiro está pressionado.
+> - **var \_tiro = instance_create_layer(x,y,"Instances",obj_tiro)**: Cria uma instância do objeto tiro na posição do player e coloca essa instância numa variável local \_tiro.
+> - **\_tiro.direction = ang**: Aplica o cálculo de direção do tiro na instância \_tiro.
+
+Agora podemos apertar F5 e ver o player atirando na direção da mira, mas ainda não temos inimigos para testar o dano do tiro, e o tiro está atravessando as paredes, então vamos corrigir isso.
+
+![atirando](./img/atirando.png)
+
+Primeiro vamos consertar o tiro atravessando as paredes, então vamos adicionar o seguinte código no evento **Etapa** do obj_tiro:
+
+    if place_meeting(x,y,obj_parede) {
+        instance_destroy()
+    }
+
+E também vamos adicionar o instance_destroy() no evento **Ambiente Externo** do obj_tiro:
+
+    instance_destroy()
+
+Isso garante que o tiro seja destruído caso ele saia da sala ou colida com uma parede.
+
+E que tal se adicionarmos um efeito pra quando o tiro é destruído? Vamos criar um obj_explosao e um sprite pra ele, que vai ser uma animação de explosão.
+
+![explosao-sprite](./img/explosao.png)
+
+No editor de sprite nós podemos adicionar mais frames pra a animação, nesse caso vamos fazer 6 frames de uma pequena explosão se dissipando.
+
+Vamos aplicar esse sprite no obj_explosao.
+
+![obj_explosao](./img/obj_explosao.png)
+
+Agora, no evento Etapa do obj_explosao, vamos adicionar o seguinte código:
+
+    if (image_index+image_speed >= image_number){
+        instance_destroy()
+    }
+
+Esse é um simples código que destrói a instância depois que a animação termina, e agora vamos adicionar o seguinte código no evento **Destruir** do **obj_tiro**:
+
+    instance_create_layer(x,y,"Instances",obj_explosao)
+
+Assim, ele vai criar uma pequena explosão toda vez que for destruído.
+
+> **Observação:** O evento **Destruir** é chamado toda vez que a instância do objeto é destruída, seja por colisão, ambiente externo ou qualquer outro motivo.
+>
+> **Observação 2:** O evento **Ambiente Externo** é chamado toda vez que a instância do objeto sai da sala, seja por colisão, ambiente externo ou qualquer outro motivo.
+>
+> **Observação 3:** O código aplicado no evento **Etapa** do obj_explosao funciona pra qualquer animação, então é só mudar o sprite do obj_explosao caso precise de uma animação diferente e o código vai funcionar do mesmo jeito.
