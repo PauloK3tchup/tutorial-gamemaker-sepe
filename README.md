@@ -665,4 +665,50 @@ Agora podemos apertar F5 e ver o inimigo sendo destruído com uma explosão maio
 
 #### Fazendo o Inimigo Atacar
 
-Agora precisamos fazer com que o inimigo ataque o player quando estiver próximo, para isso vamos criar um objeto chamado obj_inimigo_ataque.
+Agora precisamos fazer com que o inimigo ataque o player quando estiver próximo, para isso vamos criar um objeto chamado **obj_tiro_inimigo** e colocar um sprite de ataque diferente do nosso.
+
+![alt text](img/tiro_inimigo.png)
+
+O código dele será igual o do **obj_tiro** por enquanto, mas com uma velocidade maior, vamos colocar **12**. Inclusive, vamos tirar essa oportunidade para aumentar a velocidade do tiro do player para **7**.
+
+Agora, no evento **Criar** do obj_inimigo, vamos adicionar o seguinte código:
+
+    delay_max = 20
+    delay = delay_max
+
+E no evento **Etapa** vamos colocar isso:
+
+    if delay > 0 delay--
+    delay = clamp(delay,0,delay_max)
+
+    var ang = point_direction(x,y,obj_player.x,obj_player.y)
+
+    if delay <= 0 && distance_to_object(obj_player) < 200 {
+        delay = delay_max
+        var _tiro = instance_create_layer(x,y,"Instances",obj_tiro_inimigo)
+        _tiro.direction = ang
+        _tiro.dano = dano
+    }
+
+> **Explicação:** Esse código é semelhante ao código de tiro do player, mas ao invés de calcular o ângulo em relação à mira, ele calcula em relação ao player. Além disso, ele só atira se o player estiver a menos de 200 pixels de distância.
+
+E agora, vamos fazer o player receber dano. No evento **Etapa** do obj_player, vamos adicionar o seguinte código:
+
+    if place_meeting(x,y,obj_tiro_inimigo) {
+        var _tiro = instance_place(x,y,obj_tiro_inimigo)
+        scr_dano(_tiro.dano,id)
+        instance_destroy(_tiro)
+    }
+    if vida <= 0 {
+        morto = true
+    }
+
+Mas antes de rodar, vamos adicionar no evento **Criar** do obj_player a variável **morto**:
+
+    morto = false
+
+E logo no começo do evento **Etapa**, vamos adicionar o seguinte código:
+
+    if morto exit
+
+> **Explicação:** Esse código faz com que o evento Etapa do player não possa fazer nada quando estiver morto.

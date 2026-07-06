@@ -1,2 +1,2 @@
-spd = 5
+spd = 7
 dano = 0

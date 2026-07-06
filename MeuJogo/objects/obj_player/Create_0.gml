@@ -7,3 +7,5 @@ dano = 3
 
 delay_max = 10
 delay = delay_max
+
+morto = false

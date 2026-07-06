@@ -6,3 +6,6 @@ dano = 5
 speed = 5
 
 path_start(pth_inimigo, speed, path_action_restart, true)
+
+delay_max = 20
+delay = delay_max

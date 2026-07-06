@@ -1,3 +1,5 @@
+if morto exit
+
 var hsp = (global.btn_dir - global.btn_esq)*spd
 var vsp = (global.btn_baixo - global.btn_cima)*spd
 
@@ -28,4 +30,13 @@ if delay <= 0 && global.btn_tiro {
     var _tiro = instance_create_layer(x,y,"Instances",obj_tiro)
     _tiro.direction = ang
 	_tiro.dano = dano
+}
+
+if place_meeting(x,y,obj_tiro_inimigo) {
+    var _tiro = instance_place(x,y,obj_tiro_inimigo)
+    scr_dano(_tiro.dano,id)
+    instance_destroy(_tiro)
+}
+if vida <= 0 {
+    morto = true
 }
