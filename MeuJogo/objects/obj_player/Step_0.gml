@@ -27,4 +27,5 @@ if delay <= 0 && global.btn_tiro {
     delay = delay_max
     var _tiro = instance_create_layer(x,y,"Instances",obj_tiro)
     _tiro.direction = ang
+	_tiro.dano = dano
 }

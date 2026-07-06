@@ -25,6 +25,10 @@ _**AVISO: Esse tutorial está incompleto! Não terminei ele ainda!!**_
   - [Colisões](#colisões)
   - [Outras Variáveis](#outras-variáveis)
   - [Atirando](#atirando)
+- [Criando um Inimigo](#criando-um-inimigo)
+  - [Criando um Path](#criando-um-path)
+  - [Criando um Script](#criando-um-script)
+  - [Fazendo o Inimigo Atacar](#fazendo-o-inimigo-atacar)
 
 ---
 
@@ -527,7 +531,7 @@ E que tal se adicionarmos um efeito pra quando o tiro é destruído? Vamos criar
 
 ![explosao-sprite](./img/explosao.png)
 
-No editor de sprite nós podemos adicionar mais frames pra a animação, nesse caso vamos fazer 6 frames de uma pequena explosão se dissipando.
+No editor de sprite nós podemos adicionar mais frames para a animação, nesse caso vamos fazer 6 frames de uma pequena explosão se dissipando.
 
 Vamos aplicar esse sprite no obj_explosao.
 
@@ -550,3 +554,115 @@ Assim, ele vai criar uma pequena explosão toda vez que for destruído.
 > **Observação 2:** O evento **Ambiente Externo** é chamado toda vez que a instância do objeto sai da sala, seja por colisão, ambiente externo ou qualquer outro motivo.
 >
 > **Observação 3:** O código aplicado no evento **Etapa** do obj_explosao funciona pra qualquer animação, então é só mudar o sprite do obj_explosao caso precise de uma animação diferente e o código vai funcionar do mesmo jeito.
+
+Agora podemos fazer um inimigo simples para testar o dano do tiro e a vida do player.
+
+## Criando um Inimigo
+
+#### Criando um Path
+
+Normalmente um inimigo teria uma IA mais complexa que monta um caminho inteiro até o player, mas nesse caso vamos fazer um inimigo mais simples que seque um caminho predefinido e ataca o player quando ele estiver próximo.
+
+Assim como fizemos antes com os objetos, vamos criar um objeto chamado **obj_inimigo** e um sprite para ele, que vai ser um quadrado vermelho simples.
+
+![obj inimigo](./img/obj_inimigo.png)
+
+Mas, antes de escrevermos qualquer código, vamos voltar para o editor de sala.
+
+Vamos criar uma camada do tipo **Path** chamada **Paths** e depois vamos criar um grupo chamado **Paths** e um caminho chamado **pth_inimigo**.
+
+![path](./img/path.png)
+
+Agora, na camada Paths, vamos arrastar o pth_inimigo para a sala e vamos configurar dessa maneira:
+
+![alt text](img/config_path.png)
+
+Assim o caminho vai ficar reto e vai ser um loop, e o inimigo vai andar nesse caminho indefinidamente.
+
+> **Observação:** Se quiser, pode marcar a opção **Curva Suave**, ela faz com que o movimento fique mais suave e natural pela sala. Nesse caso em específico eu vou deixar desmarcado para que o inimigo se mova de maneira mais "robótica".
+
+Agora é só desenhar o caminho pela sala. Como nós marcamos a opção "Fechado", não precisamos nos preocupar em fechar o caminho, ele vai se fechar sozinho.
+
+![caminho desenhado](img/path_draw.png)
+
+Agora, vamos no evento **Criar** do obj_inimigo e adicionar o seguinte código:
+
+    //Create Event
+
+    vida_max = 30
+    vida = vida_max
+
+    dano = 5
+
+    speed = 5
+
+    path_start(pth_inimigo, speed, path_action_restart, true)
+
+E vamos colocar o objeto na camada "Instances" da sala, em qualquer lugar da sala, pois ele vai seguir o caminho que desenhamos do primeiro ponto colocado.
+
+Agora vamos criar uma coisa interessante: Um **script**.
+
+#### Criando um Script
+
+Scrips são códigos que podem ser chamados de qualquer lugar do jogo, e eles podem receber parâmetros para serem usados dentro do código. Eles são muito úteis para evitar a repetição de código e para organizar melhor o projeto.
+
+Crie a pasta "Scripts" e dentro dela crie um script chamado **scr_dano**.
+
+Dentro dele, vamos escrever o seguinte código:
+
+    function scr_dano(_dano,_obj){
+        _obj.vida -= _dano
+    }
+
+Ele é super simples, só aplica o dano passado como parâmetro na vida do objeto passado como parâmetro, mas será útil para aplicarmos o dano no inimigo e no player de maneira mais organizada.
+
+No evento etapa do obj_inimigo, vamos adicionar o seguinte código:
+
+    if place_meeting(x,y,obj_tiro) {
+        var _tiro = instance_place(x,y,obj_tiro)
+        scr_dano(_tiro.dano,id)
+        instance_destroy(_tiro)
+    }
+    if vida <= 0 instance_destroy()
+
+> **Explicação:** O código verifica se o inimigo está colidindo com algum tiro, e caso esteja, ele aplica o dano do tiro na vida do inimigo e destrói o tiro. Além disso, ele verifica se a vida do inimigo chegou a 0 ou menos, e caso tenha chegado, ele destrói o inimigo.
+
+Apertando F5, agora podemos atirar no inimigo e-
+
+![Erro](img/erro_tiro.png)
+
+**Oops!**
+
+Parece que esquecemos de passar o valor do dano para o obj_tiro! Vamos fazer isso agora.
+
+No evento Criar do obj_tiro, vamos adicionar o seguinte código:
+
+    dano = 0
+
+E no código de atirar do obj_player, vamos mudar a linha que cria o tiro para:
+
+    var _tiro = instance_create_layer(x,y,"Instances",obj_tiro)
+    _tiro.direction = ang
+    _tiro.dano = dano
+
+Agora o obj_tiro vai dar o dano definido no obj_player, o inimigo vai perder vida quando for atingido e ser destruído quando a vida chegar a 0.
+
+![inimigo dano](img/inimigo_dano.png)
+
+E que tal se reusarmos o obj_explosao no inimigo? Vamos criar um novo sprite chamado spr_explosao_inimigo, dessa vez ele será maior.
+
+![explosao grande](img/explosao_grande.png)
+
+E no evento **Destruir** do obj_inimigo, vamos adicionar o seguinte código:
+
+    var _explosao = instance_create_layer(x,y,
+    "Instances",obj_explosao)
+    _explosao.sprite_index = spr_explosao_inimigo
+
+> **Explicação:** O código cria uma instância do objeto obj_explosao na mesma posição do inimigo e muda o sprite para o sprite da explosão do inimigo.
+
+Agora podemos apertar F5 e ver o inimigo sendo destruído com uma explosão maior quando sua vida chega a 0!
+
+#### Fazendo o Inimigo Atacar
+
+Agora precisamos fazer com que o inimigo ataque o player quando estiver próximo, para isso vamos criar um objeto chamado obj_inimigo_ataque.
