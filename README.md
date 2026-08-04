@@ -8,29 +8,31 @@ _O projeto usado de exemplo está disponível no repositório do Github desta p�
 
 - [Sumário](#sumário)
 - [Introdução ao GameMaker](#introdução-ao-gamemaker)
-- [Instalação do GameMaker](#instalação-do-gamemaker) - [Ubuntu](#ubuntu) - [Windows](#windows)
+- [Instalação do GameMaker](#instalação-do-gamemaker)
+        - [Ubuntu](#ubuntu)
+        - [Windows](#windows)
 - [Criação do Projeto](#criação-do-projeto)
 - [Conhecendo o espaço de trabalho do GameMaker](#conhecendo-o-espaço-de-trabalho-do-gamemaker)
-  - [Configuração da plataforma](#configuração-da-plataforma)
-  - [Áreas principais](#áreas-principais)
+    - [Configuração da plataforma](#configuração-da-plataforma)
+    - [Áreas principais](#áreas-principais)
 - [Criando os objetos](#criando-os-objetos)
-  - [Eventos](#eventos)
-  - [Os inputs do player](#os-inputs-do-player)
+    - [Eventos](#eventos)
+    - [Os inputs do player](#os-inputs-do-player)
 - [Criando uma Sala](#criando-uma-sala)
 - [Criando um Sprite](#criando-um-sprite)
 - [Controlando o Player](#controlando-o-player)
-  - [Movimento](#movimento)
-  - [Colisões](#colisões)
-  - [Outras Variáveis](#outras-variáveis)
-  - [Atirando](#atirando)
+    - [Movimento](#movimento)
+    - [Colisões](#colisões)
+    - [Outras Variáveis](#outras-variáveis)
+    - [Atirando](#atirando)
 - [Criando um Inimigo](#criando-um-inimigo)
-  - [Criando um Path](#criando-um-path)
-  - [Criando um Script](#criando-um-script)
-  - [Fazendo o Inimigo Atacar](#fazendo-o-inimigo-atacar)
-  - [Tela de Game Over e Barra de Vida](#tela-de-game-over-e-barra-de-vida)
+    - [Criando um Path](#criando-um-path)
+    - [Criando um Script](#criando-um-script)
+    - [Fazendo o Inimigo Atacar](#fazendo-o-inimigo-atacar)
+    - [Tela de Game Over e Barra de Vida](#tela-de-game-over-e-barra-de-vida)
 - [E Agora?](#e-agora)
-  - [Divirta-se!](#divirta-se)
-  - [E onde eu posso publicar meu jogo?](#e-onde-eu-posso-publicar-meu-jogo)
+    - [Divirta-se!](#divirta-se)
+    - [E onde eu posso publicar meu jogo?](#e-onde-eu-posso-publicar-meu-jogo)
 
 ---
 
@@ -663,8 +665,7 @@ E que tal se reusarmos o obj_explosao no inimigo? Vamos criar um novo sprite cha
 
 E no evento **Destruir** do obj_inimigo, vamos adicionar o seguinte código:
 
-    var _explosao = instance_create_layer(x,y,
-    "Instances",obj_explosao)
+    var _explosao = instance_create_layer(x,y,"Instances",obj_explosao)
     _explosao.sprite_index = spr_explosao_inimigo
 
 > **Explicação:**
@@ -746,6 +747,7 @@ Vamos começar pela tela de game over, no evento **Desenhar** do obj_hud, vamos 
         draw_set_alpha(0.8)
         draw_rectangle_colour(0,0,room_width,room_height,c_black,c_black,c_black,c_black,false)
     	draw_set_alpha(1)
+        
     	draw_text_colour(_x_meio,_y_meio,"GAME OVER",c_red,c_red,c_red,c_red,1)
     }
 
@@ -789,6 +791,7 @@ No evento **Desenhar** do obj_hud, vamos adicionar o seguinte código:
         draw_set_alpha(0.5)
         draw_rectangle_colour(_vida_x,_vida_y,_vida_x+_vida_largura,_vida_y+_vida_altura,c_black,c_black,c_black,c_black,false)
         draw_set_alpha(1)
+
         draw_rectangle_colour(_vida_x,_vida_y,_vida_x+_vida_largura*_vida_porcentagem,_vida_y+_vida_altura,c_green,c_green,c_green,c_green,false)
     }
 
