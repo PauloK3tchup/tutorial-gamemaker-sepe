@@ -747,7 +747,7 @@ Vamos começar pela tela de game over, no evento **Desenhar** do obj_hud, vamos 
         draw_set_alpha(0.8)
         draw_rectangle_colour(0,0,room_width,room_height,c_black,c_black,c_black,c_black,false)
     	draw_set_alpha(1)
-        
+
     	draw_text_colour(_x_meio,_y_meio,"GAME OVER",c_red,c_red,c_red,c_red,1)
     }
 
