@@ -2,8 +2,6 @@ _Essa é a documentação do tutorial de criação de um jogo 2D Top-Down Shoote
 
 _O projeto usado de exemplo está disponível no repositório do Github desta página._
 
-_**AVISO: Esse tutorial está incompleto! Não terminei ele ainda!!**_
-
 ---
 
 ## Sumário
@@ -29,6 +27,10 @@ _**AVISO: Esse tutorial está incompleto! Não terminei ele ainda!!**_
   - [Criando um Path](#criando-um-path)
   - [Criando um Script](#criando-um-script)
   - [Fazendo o Inimigo Atacar](#fazendo-o-inimigo-atacar)
+  - [Tela de Game Over e Barra de Vida](#tela-de-game-over-e-barra-de-vida)
+- [E Agora?](#e-agora)
+  - [Divirta-se!](#divirta-se)
+  - [E onde eu posso publicar meu jogo?](#e-onde-eu-posso-publicar-meu-jogo)
 
 ---
 
@@ -48,8 +50,6 @@ Além de ser altamente acessível e fácil de se aprender, a engine também ofer
 Eu mesmo tenho alguns jogos na minha página do [itch.io](https://paulok3tchup.itch.io/) que podem servir de exemplo para vocês das capacidades dessa engine até mesmo nas mãos de um desenvolvedor sem muita experiência como eu.
 
 > **Observação:** GameMaker é um software gratuito que permite que você crie e exporte os jogos gratuitamente para algumas plataformas sem problemas, _**ENTRETANTO**_ é necessário **comprar** uma licença para que o jogo possa ser comercializado e exportado para outras plataformas, como Nintendo Switch, Playstation e etc. Para mais informações sobre as licenças do GameMaker, acesse a [página de licenças](https://gamemaker.io/pt-BR/get).
-
-> **Observação 2:** Itch.io é uma plataforma de jogos na qual eu entrarei em detalhes mais pra frente.
 
 Mas agora, antes de começar o desenvolvimento, precisamos primeiramente instalar o dito cujo.
 
@@ -598,6 +598,8 @@ Agora, vamos no evento **Criar** do obj_inimigo e adicionar o seguinte código:
 
     path_start(pth_inimigo, speed, path_action_restart, true)
 
+> **Explicação:** **path_start():** Função que faz o objeto seguir o caminho definido no primeiro parâmetro, os outros parâmetros definem a velocidade, o que fazer quando o caminho acaba e se ele vai ser relativo à posição (false) ou absoluto no mapa (true).
+
 E vamos colocar o objeto na camada "Instances" da sala, em qualquer lugar da sala, pois ele vai seguir o caminho que desenhamos do primeiro ponto colocado.
 
 Agora vamos criar uma coisa interessante: Um **script**.
@@ -625,7 +627,13 @@ No evento etapa do obj_inimigo, vamos adicionar o seguinte código:
     }
     if vida <= 0 instance_destroy()
 
-> **Explicação:** O código verifica se o inimigo está colidindo com algum tiro, e caso esteja, ele aplica o dano do tiro na vida do inimigo e destrói o tiro. Além disso, ele verifica se a vida do inimigo chegou a 0 ou menos, e caso tenha chegado, ele destrói o inimigo.
+> **Explicação:**
+>
+> - **if place_meeting(x,y,obj_tiro)**: Checa se o objeto está em colisão com o tiro;
+> - **var \_tiro = instance_place(x,y,obj_tiro)**: Caso esteja, armazena esse obj_tiro numa variável local \_tiro;
+> - **scr_dano(\_tiro.dano,id)**: Aplica o dano desse obj_tiro em si mesmo;
+> - **instance_destroy(\_tiro)**: Destroy esse objeto armazenado;
+> - **if vida <= 0 instance_destroy()**: Se a vida for menor ou igual a 0, o objeto é destruído.
 
 Apertando F5, agora podemos atirar no inimigo e-
 
@@ -659,7 +667,10 @@ E no evento **Destruir** do obj_inimigo, vamos adicionar o seguinte código:
     "Instances",obj_explosao)
     _explosao.sprite_index = spr_explosao_inimigo
 
-> **Explicação:** O código cria uma instância do objeto obj_explosao na mesma posição do inimigo e muda o sprite para o sprite da explosão do inimigo.
+> **Explicação:**
+>
+> - **var \_explosao = instance_create_layer(...)**: Cria uma instância do obj_explosao na posição do inimigo e armazena numa variável local \_explosao;
+> - **\_explosao.sprite_index = spr_explosao_inimigo**: Muda o sprite da instância criada para o spr_explosao_inimigo
 
 Agora podemos apertar F5 e ver o inimigo sendo destruído com uma explosão maior quando sua vida chega a 0!
 
@@ -690,7 +701,7 @@ E no evento **Etapa** vamos colocar isso:
         _tiro.dano = dano
     }
 
-> **Explicação:** Esse código é semelhante ao código de tiro do player, mas ao invés de calcular o ângulo em relação à mira, ele calcula em relação ao player. Além disso, ele só atira se o player estiver a menos de 200 pixels de distância.
+> **Explicação:** Esse código é semelhante ao código de tiro do player, mas ao invés de calcular o ângulo em relação à mira, ele calcula em relação ao player. Além disso, ele só atira se o player estiver a menos de 200 pixels de distância (a função distance_to_object() faz isso).
 
 E agora, vamos fazer o player receber dano. No evento **Etapa** do obj_player, vamos adicionar o seguinte código:
 
@@ -711,4 +722,100 @@ E logo no começo do evento **Etapa**, vamos adicionar o seguinte código:
 
     if morto exit
 
-> **Explicação:** Esse código faz com que o evento Etapa do player não possa fazer nada quando estiver morto.
+> **Explicação:** Se a variável "morto" for verdadeira, o código do evento Etapa não vai rodar, assim o player não vai se mover nem atirar.
+
+#### Tela de Game Over e Barra de Vida
+
+Entretanto, você deve ter notando que quando o player morre, ele simplesmente para de se mover e atirar, mas não há nenhuma indicação visual de que ele morreu (e nem uma maneira de reiniciar o jogo), e isso não é algo que queremos.
+
+Então, por fim, vamos resolver esses problemas criando um objeto chamado **obj_hud**, ele não precisa ter sprite.
+
+![obj_hud](./img/obj_hud.png)
+
+Esse objeto será colocado na camada "Hud" da sala e vai ser responsável por mostrar a vida do player na tela e também mostrar a tela de _game over_ quando o player morrer.
+
+Vamos começar pela tela de game over, no evento **Desenhar** do obj_hud, vamos adicionar o seguinte código:
+
+    var _x_meio = camera_get_view_x(view_camera) + camera_get_view_width(view_camera)/2
+    var _y_meio = camera_get_view_y(view_camera) + camera_get_view_height(view_camera)/2
+
+    draw_set_valign(fa_center)
+    draw_set_halign(fa_middle)
+
+    if obj_player.morto {
+        draw_set_alpha(0.8)
+        draw_rectangle_colour(0,0,room_width,room_height,c_black,c_black,c_black,c_black,false)
+    	draw_set_alpha(1)
+    	draw_text_colour(_x_meio,_y_meio,"GAME OVER",c_red,c_red,c_red,c_red,1)
+    }
+
+> **Explicação:**
+>
+> - **\_x_meio e \_y_meio**: Calculam o centro da câmera para desenhar o texto no meio da tela.
+> - **draw_set_valign(fa_center) e draw_set_halign(fa_middle)**: Configuram o alinhamento do texto para o centro.
+> - **if obj_player.morto**: Verifica se o player está morto.
+> - **draw_set_alpha(0.8)**: Define a transparência para desenhar o retângulo de fundo.
+> - **draw_rectangle_colour(...)**: Desenha um retângulo preto cobrindo toda a tela.
+> - **draw_set_alpha(1)**: Restaura a transparência para desenhar o texto.
+> - **draw_text_colour(...)**: Desenha o texto "GAME OVER" no centro da tela com a cor vermelha.
+
+> **Observação:** Normalmente se recomenda usar **Desenhar GUI** para desenhar elementos da interface do usuário, mas nesse caso estamos usando o evento **Desenhar** pois notei certos problemas desenhando na GUI usando o GXGames, pelo menos nos PCs do IFC.
+
+Também vamos no evento Etapa do obj_hud e adicionar o seguinte código:
+
+    if obj_player.morto && keyboard_check_pressed(ord("R")) {
+        room_restart()
+    }
+
+> **Explicação:** Se o player estiver morto e a tecla "R" for pressionada, o jogo vai reiniciar a sala atual.
+
+Nossa telinha de game over ficou assim:
+
+![tela de game over](./img/game_over.png)
+
+Agora vamos fazer uma barra de vida simples sobre o player para ver quanto de vida nós temos restante durante o jogo.
+
+No evento **Desenhar** do obj_hud, vamos adicionar o seguinte código:
+
+    if obj_player.morto {
+        // Código de antes
+    } else {
+        var _vida_porcentagem = obj_player.vida / obj_player.vida_max
+        var _vida_largura = 100
+        var _vida_altura = 10
+        var _vida_x = obj_player.x - _vida_largura/2
+        var _vida_y = obj_player.y - 40
+
+        draw_set_alpha(0.5)
+        draw_rectangle_colour(_vida_x,_vida_y,_vida_x+_vida_largura,_vida_y+_vida_altura,c_black,c_black,c_black,c_black,false)
+        draw_set_alpha(1)
+        draw_rectangle_colour(_vida_x,_vida_y,_vida_x+_vida_largura*_vida_porcentagem,_vida_y+_vida_altura,c_green,c_green,c_green,c_green,false)
+    }
+
+> **Explicação:** De modo resumido, esse código calcula a porcentagem de vida restante do player e desenha uma barra de vida verde sobre ele, com um fundo preto semi-transparente, mas somente enquanto o player estiver vivo.
+
+E ela vai ficar bem assim:
+
+![barra de vida](./img/barra_vida.png)
+
+## E Agora?
+
+#### Divirta-se!
+
+Agora você pode customizar esse jogo do jeito que quiser! Pode adicionar uma barra de vida ao inimigo, adicionar mais inimigos, criar outras fases, powerups, chefões e etc. Crie novos sprites mais bonitinhos ou procure sprites na internet (mas não publique nada que não é seu sem permissão!). O céu é o limite!
+
+Recomendo, novamente, visitar o [manual](https://manual.gamemaker.io/monthly/br/##t=Content.htm) oficial do GameMaker para aprender mais sobre as funções e eventos disponíveis, ou procurar tutoriais na internet para aprender outros métodos de trazer seu jogo à vida.
+
+Se quiser você pode até baixar o projeto completo que eu fiz como exemplo [aqui no repositório desse tutorial](https://github.com/PauloK3tchup/tutorial-gamemaker-sepe.git) para adaptar ele a seu gosto.
+
+Outra recomendação e o canal do [YouTube](https://www.youtube.com/@GameMakerEngine) do próprio GameMaker, que possui vários tutoriais e dicas de como usar a engine.
+
+#### E onde eu posso publicar meu jogo?
+
+Imagino que, logo de cara, você deve estar pensando e publicar seu jogo numa plataforma como a Steam ou a Epic Games Store (acho difícil alguém querer publicar na Epic, mas enfim), mas antes de pensar nisso, você deveria primeiro tentar publicar seu jogo em plataformas mais simples e gratuitas como o [Itch.io](https://itch.io/) ou o [Game Jolt](https://gamejolt.com/).
+
+Essas plataformas são mais simples e rápidas de publicar, e você pode receber feedbacks da comunidade para melhorar seu jogo antes de tentar publicar em plataformas maiores, além de que essas plataformas também são cheias de jogos independentes para você experimentar e se inspirar antes de começar o seu.
+
+Uma coisa muito importante se ter em mente é que **a parte mais difícil de fazer um jogo é COMEÇAR!** Não tenha medo de mergulhar de cabeça nesse assunto se é algo que te interessa mesmo que pareça impossível.
+
+Uma dica de ouro que eu posso dar é a seguinte: Não comece com seu "projeto dos sonhos", comece pequeno, faça um jogo simples ou até tente recriar algum jogo que você gosta, e depois vá aumentando a complexidade do seu projeto aos poucos. O importante é começar e ir aprendendo com os erros e acertos.
