@@ -252,7 +252,7 @@ Sendo bem direto no que faremos aqui:
 - Colocaremos o obj_player na camada "Instances".
 - Adicionaremos uma camada de instâncias chamada "Hud" e colocaremos o obj_controle nessa camada.
 
-> **Explicação**: Visores e câmeras são usados para controlar o que o jogador vê na tela, o visor determina **que** parte da sala é exibida, enquanto a câmera determina **como** essa parte da tela é exibida, e essa exibição é chamada e "Visão" ou "View". As mudanças que fizemos no tamanho do visor e da câmera é para que nosso jogo tenha a resolução de 640x480 e a determinação do objeto seguido é para que a câmera siga o player. Caso você queira que a câmera se aproxime ou se afaste do player, mude o valor da **câmera**, não do visor!
+> **Explicação**: Visores e câmeras são usados para controlar o que o jogador vê na tela, o a câmera determina **que** parte da sala é exibida, enquanto o visor determina **como** essa parte da tela é exibida, e essa exibição é chamada e "Visão" ou "View". As mudanças que fizemos no tamanho do visor e da câmera é para que nosso jogo tenha a resolução de 640x480 e a determinação do objeto seguido é para que a câmera siga o player.
 
 Não vamos mexer nas físicas da sala hoje, pois vamos simular nossa própria física simples.
 
