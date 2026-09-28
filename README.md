@@ -276,7 +276,7 @@ Aqui, nós podemos criar a aparência do nosso player e mexer em suas propriedad
 
 O editor é bem simples, trate-se de um programa de desenho embutido com ferramentas básicas. Por enquanto, vamos desenhar apenas um retângulo colorido para representar o jogador.
 
-Retornando ao editor de sprite, vamos mudar a origem do sprite para o centro clicando no dropdown do canto superior esquerdo. Isso siginifica que qualquer movimento, rotação e outras coisas de movimento vão ser calculados a partir do centro do sprite, e não da borda superior esquerda, que é o padrão.
+Retornando ao editor de sprite, vamos mudar a origem do sprite para o centro clicando no dropdown do canto superior direito. Isso siginifica que qualquer movimento, rotação e outras coisas de movimento vão ser calculados a partir do centro do sprite, e não da borda superior esquerda, que é o padrão.
 
 ![sprite do player](/img/spr_player.png)
 
@@ -396,7 +396,7 @@ Por esse:
 > **Explicação:**
 >
 > - **if place_meeting(...)**: Verifica se o player está em colisão com a parede.
-> - **loop while**: Faz uma verificação extra pixel por pixel pra garantir que o player esteja, de fato, colidindo com a parede.
+> - **loop while**: Move o player pixel por pixel para garantir que ele esteja encostado na parede.
 > - **hsp = 0 (ou o vsp = 0)**: Zera a velocidade para que o player pare.
 > - **x += hsp (ou o y += vsp)**: Aplica a velocidade à posição do player.
 >
