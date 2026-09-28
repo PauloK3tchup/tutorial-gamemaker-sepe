@@ -563,7 +563,7 @@ Agora podemos fazer um inimigo simples para testar o dano do tiro e a vida do pl
 
 #### Criando um Path
 
-Normalmente um inimigo teria uma IA mais complexa que monta um caminho inteiro até o player, mas nesse caso vamos fazer um inimigo mais simples que seque um caminho predefinido e ataca o player quando ele estiver próximo.
+Normalmente um inimigo teria uma IA mais complexa que monta um caminho inteiro até o player, mas nesse caso vamos fazer um inimigo mais simples que segue um caminho predefinido e ataca o player quando ele estiver próximo.
 
 Assim como fizemos antes com os objetos, vamos criar um objeto chamado **obj_inimigo** e um sprite para ele, que vai ser um quadrado vermelho simples.
 
