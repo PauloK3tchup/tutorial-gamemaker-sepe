@@ -63,6 +63,12 @@ Mas agora, antes de começar o desenvolvimento, precisamos primeiramente instala
 
 Para Instalar o GameMaker no Ubuntu, basta executar o seguinte comando no terminal:
 
+    //Observei pode ocorrer um erro nos computadores atuais do IFC, então execute isso primeiro:
+    
+    sudo apt install ffmpeg
+
+    // Agora esse:
+
     curl -L -o gamemaker.deb https://gamemaker.io/pt-BR/download/ubuntu/lts/GameMaker.zip && sudo dpkg -i gamemaker.deb && rm gamemaker.deb
 
 O comando pode pedir a senha da sua conta de usuário, digite-a para prosseguir com a instalação.
