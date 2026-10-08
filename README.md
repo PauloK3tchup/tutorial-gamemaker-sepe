@@ -1,6 +1,6 @@
 _Essa é a documentação do tutorial de criação de um jogo 2D Top-Down Shooter na Engine GameMaker para a Semana de Estudo, Pesquisa e Extensão do Instituto Federal Catarinense Campus Araquari de 2026._
 
-_O projeto usado de exemplo está disponível no repositório do Github desta página._
+_O projeto usado de exemplo nesse tutorial e o projeto desenvolvido em sala estão disponíveis no repositório do Github desta página. Clique em "View Github" para acessar._
 
 ---
 
